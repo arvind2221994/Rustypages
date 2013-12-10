@@ -10,6 +10,7 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
+<script type="text/JavaScript" src="forms.js"></script>
 <style>
 
 
@@ -65,8 +66,10 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
 				<input type="email" style="width:200px"  name="email" placeholder=" Enter your email address" class="span3"/><br>
 				<label>Password</label>
 				<input type="text" name="password" placeholder="Keep it secure!" class="span3"/><br>
-				<button type="submit" value="login" onclick="formhash(this.form,
-                            this.form.password);" class="btn btn-success">Login</button>
+				<button 
+				type="submit" 
+				value="login" 
+				onclick= "return true" class="btn btn-success">Login</button>
 				<button type="reset" class="btn">Clear</button>
 			</form>	
       			</div>
@@ -84,7 +87,7 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
   		      <h4 class="modal-title" id="myModalLabel">Registration</h4>
   		    </div>
   		    <div class="modal-body">
-			<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>>"
+			<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>"
 					method="post"
 					name="registration_form">
 			<label>Username</label>

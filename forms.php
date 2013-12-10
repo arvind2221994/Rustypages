@@ -1,15 +1,17 @@
-function formhash(form, password) {
+<?php
+function formhash($form, $password) {
+    $dom= new DOMDocument();
     // Create a new element input, this will be our hashed password field. 
-    //var p = document.createElement("input");
- 
+    $p = $dom->createElement('input');
+   
     // Add the new element to our form. 
-    //form.appendChild(p);
-    //p.name = "p";
-    //p.type = "hidden";
-    //p.value = hex_sha512(password.value);
+    $p=$dom->appendChild($p);
+    $p.name = "p";
+    p.type = "hidden";
+    p.value = hex_sha512(password.value);
  
     // Make sure the plaintext password doesn't get sent. 
-    //password.value = "";
+    password.value = "";
  
     // Finally submit the form. 
     form.submit();
@@ -50,7 +52,7 @@ function regformhash(form, uid, name, roll, hostel, email, password, conf) {
     // At least one number, one lowercase and one uppercase letter 
     // At least six characters 
  
-    var re = /^[a-z0-9_-]{6,18}$/  ; 
+    var re = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/  ; 
     if (!re.test(password.value)) {
         alert('Passwords must contain at least one number, one lowercase and one uppercase letter.  Please try again');
         return false;
@@ -80,3 +82,4 @@ function regformhash(form, uid, name, roll, hostel, email, password, conf) {
     form.submit();
     return true;
 }
+?>

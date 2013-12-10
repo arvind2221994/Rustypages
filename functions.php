@@ -23,8 +23,8 @@ function sec_session_start() {
 
 function login($email, $password, $mysqli) {
     // Using prepared statements means that SQL injection is not possible. 
-    if ($stmt = $mysqli->prepare("SELECT id, username, password, salt 
-        FROM members
+    if ($stmt = $mysqli->prepare("SELECT uuid, username, password, salt 
+        FROM users
        WHERE email = ?
         LIMIT 1")) {
         $stmt->bind_param('s', $email);  // Bind "$email" to parameter.
@@ -36,12 +36,12 @@ function login($email, $password, $mysqli) {
         $stmt->fetch();
  
         // hash the password with the unique salt.
-        $password = hash('sha512', $password . $salt);
+        $password = hash("sha256",$password . $salt);
         if ($stmt->num_rows == 1) {
             // If the user exists we check if the account is locked
             // from too many login attempts 
  
-            if (checkbrute($user_id, $mysqli) == true) {
+            if (checkbrute($username, $mysqli) == true) {
                 // Account is locked 
                 // Send an email to user saying their account is locked
                 return false;
@@ -60,16 +60,15 @@ function login($email, $password, $mysqli) {
                                                                 "", 
                                                                 $username);
                     $_SESSION['username'] = $username;
-                    $_SESSION['login_string'] = hash('sha512', 
-                              $password . $user_browser);
+                    $_SESSION['login_string'] = hash('sha256', $password . $user_browser);
                     // Login successful.
                     return true;
                 } else {
                     // Password is not correct
                     // We record this attempt in the database
                     $now = time();
-                    $mysqli->query("INSERT INTO login_attempts(user_id, time)
-                                    VALUES ('$user_id', '$now')");
+                    $mysqli->query("INSERT INTO login_attempts(username, time)
+                                    VALUES ('$username', '$now')");
                     return false;
                 }
             }
@@ -80,7 +79,7 @@ function login($email, $password, $mysqli) {
     }
 }
 
-function checkbrute($user_id, $mysqli) {
+function checkbrute($username, $mysqli) {
     // Get timestamp of current time 
     $now = time();
  
@@ -88,17 +87,17 @@ function checkbrute($user_id, $mysqli) {
     $valid_attempts = $now - (2 * 60 * 60);
  
     if ($stmt = $mysqli->prepare("SELECT time 
-                             FROM login_attempts <code><pre>
+                             FROM login_attempts
                              WHERE user_id = ? 
                             AND time > '$valid_attempts'")) {
-        $stmt->bind_param('i', $user_id);
+        $stmt->bind_param('s', $username);
  
         // Execute the prepared query. 
         $stmt->execute();
         $stmt->store_result();
  
         // If there have been more than 5 failed logins 
-        if ($stmt->num_rows > 5) {
+        if ($stmt->num_rows > 7) {
             return true;
         } else {
             return false;
@@ -120,8 +119,8 @@ function login_check($mysqli) {
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
  
         if ($stmt = $mysqli->prepare("SELECT password 
-                                      FROM members 
-                                      WHERE id = ? LIMIT 1")) {
+                                      FROM users 
+                                      WHERE uuid = ? LIMIT 1")) {
             // Bind "$user_id" to parameter. 
             $stmt->bind_param('i', $user_id);
             $stmt->execute();   // Execute the prepared query.
@@ -131,7 +130,7 @@ function login_check($mysqli) {
                 // If the user exists get variables from result.
                 $stmt->bind_result($password);
                 $stmt->fetch();
-                $login_check = hash('sha512', $password . $user_browser);
+                $login_check = hash('sha256', $password . $user_browser);
  
                 if ($login_check == $login_string) {
                     // Logged In!!!! 
