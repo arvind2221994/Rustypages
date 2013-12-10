@@ -60,12 +60,13 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
         			<h4 class="modal-title" id="myModalLabel">Login details</h4>
       			 </div>
       			<div class="modal-body">
-       			<form>
+       		<form action="process_login.php" method="post">
 				<label>EmailID</label>
-				<input type="email"style="width:200px"  placeholder=" Enter your email address" class="span3"/><br>
+				<input type="email" style="width:200px"  name="email" placeholder=" Enter your email address" class="span3"/><br>
 				<label>Password</label>
-				<input type="text" placeholder="Keep it secure!" class="span3"/><br>
-				<button type="submit" class="btn btn-success">Login</button>
+				<input type="text" name="password" placeholder="Keep it secure!" class="span3"/><br>
+				<button type="submit" value="login" onclick="formhash(this.form,
+                            this.form.password);" class="btn btn-success">Login</button>
 				<button type="reset" class="btn">Clear</button>
 			</form>	
       			</div>
@@ -83,14 +84,17 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
   		      <h4 class="modal-title" id="myModalLabel">Registration</h4>
   		    </div>
   		    <div class="modal-body">
-        			<form>
-			
-				<label>Name</label>
-				<input type="text" placeholder="Your name" class="span3"/><br>
-				<br><label>Roll number</label>
-				<input type="text" placeholder="Roll number" class="span3"/><br>
-				<br><label>Hostel</label>
-					<select>
+			<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>>"
+					method="post"
+					name="registration_form">
+			<label>Username</label>
+				<input type="text" name="username" placeholder="Choose a username" class="span3"/>		
+			<br><label>Name</label>
+				<input type="text" name="name" placeholder="Your name" class="span3"/>
+			<br><label>Roll number</label>
+				<input type="text" name="roll_no" placeholder="Roll number" class="span3"/>
+			<br><label>Hostel</label>
+					<select name="hostel">
   					<option value="Alakananda">Alakananda</option>
   					<option value="Jamuna">Jamuna</option>
   					<option value="Ganga">Ganga</option>
@@ -109,13 +113,20 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
   					<option value="Mahanadi">Mahanadi</option>
   					</select>
 				
-				<br><label>EmailID</label>
-				<input type="email" style="width:200px" placeholder=" Enter your email address" class="span3"/><br>
-				<br><label>Password</label>
-				<input type="text" placeholder="Password" class="span3"/><br>
-				<br><label>Confirm Password</label>
-				<input type="text" placeholder="Retype Password" class="span3"/><br>
-				<br><button type="submit" class="btn btn-success">Submit</button>
+			<br><label>EmailID</label>
+				<input type="email" name="email" style="width:200px" placeholder=" Enter your email address" class="span3"/><br>
+			<br><label>Password</label>
+				<input type="password" name="password" placeholder="Password" class="span3"/><br>
+			<br><label>Confirm Password</label>
+				<input type="password" name="confirmpwd" placeholder="Retype Password" class="span3"/><br>
+			<br><button type="submit" value="Register" onclick="return regformhash(this.form,
+                                   this.form.username,
+								   this.form.name,
+								   this.form.roll_no,
+								   this.form.hostel,
+                                   this.form.email,
+                                   this.form.password,
+                                   this.form.confirmpwd);" class="btn btn-success">Submit</button>
 				<button type="reset" class="btn">Clear</button>
 				</form>
 		
