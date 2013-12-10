@@ -37,12 +37,25 @@ function regformhash(form, uid, name, roll, hostel, email, password, conf) {
         form.username.focus();
         return false; 
     }
- 
+    
+    re = /^([a-zA-Z]{2})([0-9]{2})[a-zA-Z]([0-9]{3})/;
+    if(!re.test(form.roll_no.value)) { 
+        alert("Please enter a valid roll no."); 
+        form.roll_no.focus();
+        return false; 
+    }
+    
+    re = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+    if(!re.test(form.email.value)) { 
+        alert("Incorrect Email ID"); 
+        form.email.focus();
+        return false; 
+    }
     // Check that the password is sufficiently long (min 6 chars)
     // The check is duplicated below, but this is included to give more
     // specific guidance to the user
     if (password.value.length < 8) {
-        alert('Passwords must be at least 6 characters long.  Please try again');
+        alert('Passwords must be at least 8 characters long.  Please try again');
         form.password.focus();
         return false;
     }
@@ -64,16 +77,16 @@ function regformhash(form, uid, name, roll, hostel, email, password, conf) {
     }
  
     // Create a new element input, this will be our hashed password field. 
-    var p = document.createElement("input");
+    //var p = document.createElement("input");
  
     // Add the new element to our form. 
-    form.appendChild(p);
-    p.name = "p";
-    p.type = "hidden";
-    p.value = hex_sha512(password.value);
+    //form.appendChild(p);
+    //p.name = "p";
+    //p.type = "hidden";
+    //p.value = hex_sha512(password.value);
  
     // Make sure the plaintext password doesn't get sent. 
-    password.value = "";
+    //password.value = "";
     conf.value = "";
  
     // Finally submit the form. 
