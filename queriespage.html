@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+<link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css"/>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<style>
+#results_panel{ position:absolute;
+margin-left:250px; height:100%;width:520px;-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	border-radius : 5px;
+	-o-border-radius : 5px;
+}
+.result{position:relative;
+height:90px;width:520px;background-color:white;-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	border-radius : 5px;
+	-o-border-radius : 5px;
+
+}
+#accordion{  width:230px;}
+#status{
+background-color:#C0C0C0;
+-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	border-radius : 5px;
+	-o-border-radius : 5px;
+height:500px;
+width:350px;
+margin-left:790px;
+position:absolute;	
+}
+</style>
+</head>
+<body style="background-color:#202020"> 
+<div class="container">
+
+      <!-- Static navbar -->
+      <div class="navbar navbar-default" role="navigation" cellpadding="100">
+        <div class="navbar-header"style=" background-color:blue" >
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project BookWorm</a>
+        </div>
+ <div class="navbar-collapse collapse">
+		<input style="position:absolute;margin-left:200px;margin-top:10px;width:300px;height:30px; align=center;" type="search" placeholder="Bookname" name="string" class="span3">   <button type="submit" style="position:absolute;margin-left:510px;margin-top:10px; align=center;"class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>       
+	<ul class="nav navbar-nav navbar-right">
+
+	<a href="#myModal" style="margin-left:100px" class="btn btn-warning" data-toggle="modal">Login</a>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ 		 <div class="modal-dialog">
+   		 <div class="modal-content">
+     			 <div class="modal-header">
+        			<h4 class="modal-title" id="myModalLabel">Login details</h4>
+      			 </div>
+      			<div class="modal-body">
+       			<form>
+				<label>EmailID</label>
+				<input type="email"style="width:200px"  placeholder=" Enter your email address" class="span3"/><br>
+				<label>Password</label>
+				<input type="text" placeholder="Keep it secure!" class="span3"/><br>
+				<button type="submit" class="btn btn-success">Login</button>
+				<button type="reset" class="btn">Clear</button>
+			</form>	
+      			</div>
+         	 </div><!-- /.modal-content -->
+  		 </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	
+	<a href="#myModal1"  class="btn btn-success" data-toggle="modal">Signup</a>
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  		<div class="modal-dialog">
+  		  <div class="modal-content">
+  		    <div class="modal-header">
+  		      <h4 class="modal-title" id="myModalLabel">Registration</h4>
+  		    </div>
+  		    <div class="modal-body">
+        			<form>
+			
+				<label>Name</label>
+				<input type="text" placeholder="Your name" class="span3"/><br>
+				<br><label>Roll number</label>
+				<input type="text" placeholder="Roll number" class="span3"/><br>
+				<br><label>Hostel</label>
+					<select>
+  					<option value="Alakananda">Alakananda</option>
+  					<option value="Jamuna">Jamuna</option>
+  					<option value="Ganga">Ganga</option>
+  					<option value="Brahmaputra">Brahmaputra</option>
+  					<option value="Sarayu">Sarayu</option>
+  					<option value="Sharavati">Sharavati</option>
+  					<option value="Tamiraparni">Tamiraparni</option>
+  					<option value="Sindhu">Sindhu</option>
+  					<option value="Krishna">Krishna</option>
+  					<option value="Kavery">Kaveri</option>
+  					<option value="Narmada">Narmada</option>
+  					<option value="Tapti">Tapti</option>
+  					<option value="Saraswati">Saraswati</option>
+  					<option value="Godavari">Godavari</option>
+  					<option value="Pampa">Pampa</option>
+  					<option value="Mahanadi">Mahanadi</option>
+  					</select>
+				
+				<br><label>EmailID</label>
+				<input type="email" style="width:200px" placeholder=" Enter your email address" class="span3"/><br>
+				<br><label>Password</label>
+				<input type="text" placeholder="Password" class="span3"/><br>
+				<br><label>Confirm Password</label>
+				<input type="text" placeholder="Retype Password" class="span3"/><br>
+				<br><button type="submit" class="btn btn-success">Submit</button>
+				<button type="reset" class="btn">Clear</button>
+				</form>
+		
+  		    </div>
+      	          </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+</div>
+</div>
+
+
+<!-- Sample of a search result-->
+<div id="results_panel">
+
+		<div class="result">
+			
+			<img src="http://covers.booktopia.com.au/big/9780470547557/fox-and-mcdonald-s-introduction-to-fluid-mechanics.jpg" alt="book1"style="margin-top:10px;margin-left:20px;height:70px;width:80px"class="img-thumbnail">
+			<p style="margin-top:-70px;margin-left:120px;"><font size="2"><b><font color="green">Name:</font>Introduction to Fluid Mechanics</b><br><b><font color="green">Author:</font>Robert W.Fox, Alan T.McDonald and Philip J.Pritchard</b><br><b><font color="green">Course:</font>AM2530 Foundations of Fluid Mechanics</b></font></p>
+		</div>
+	<br>
+		<div class="result">
+			
+			<img src="http://www-fp.pearsonhighered.com/assets/hip/images/bigcovers/0131481908.jpg" alt="book1"style="margin-top:10px;margin-left:20px;height:70px;width:80px"class="img-thumbnail">
+			<p style="margin-top:-70px;margin-left:120px;"><font size="2"><b><font color="green">Name:</font>Machine Design(5th Edition)</b><br><b><font color="green">Author:</font>Robert L.Norton</b><br><b><font color="green">Course:</font>ME3350 Design of Machine Elements</b></font></p>
+		</div>
+	<br>
+		<div class="result">
+			
+			<img src="http://www.gobookshopping.com/uploads/books/web/content/UBS/uploads/books/9781259006197.jpg" alt="book1"style="margin-top:10px;margin-left:20px;height:70px;width:80px"class="img-thumbnail">
+			<p style="margin-top:-70px;margin-left:120px;"><font size="2"><b><font color="green">Name:</font>Internal Combustion Engines</b><br><b><font color="green">Author:</font>V. Ganesan</b><br><b><font color="green">Course:</font>ME3330: IC Engines</b></font></p>
+		</div>
+
+
+</div>
+
+<div class="container" id="status">
+<br><img src='http://covers.booktopia.com.au/big/9780470547557/fox-and-mcdonald-s-introduction-to-fluid-mechanics.jpg' alt='book1' style='height:200px;width:200px'class='img-rounded'><br><br><p><font size="4"><b><font color='green'>Name:</font>Introduction to Fluid Mechanics</b><br><br><b><font color='green'>Author:</font>Robert W.Fox, Alan T.McDonald and Philip J.Pritchard</b><br><br><b><font color='green'>Course:</font>AM2530 Foundations of Fluid Mechanics</b></font></p><button type='submit' style='margin-left:220px' class="btn btn-danger"> More<span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span></button><br>
+</div>
+
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default" style="width:230px" >
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Academic
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+	<table class="table">
+     <tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-plane"></span> Aerospace Engg.</button><tr><td>
+     <tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-wrench"></span> Mechanical Engg.</button><tr><td>
+     <tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-flag"></span> Naval Architecture Engg.</button><tr><td>
+     <tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-hdd"></span> Computer Science Engg.</button><tr><td>
+     <tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-home"></span> Civil Engg.</button><tr><td>
+     <tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-tint"></span> Biotechnology </button><tr><td>
+     <tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-leaf"></span> Environmental Engg.</button><tr><td>
+     <tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-fire"></span> Chemical Engg.</button><tr><td>
+     <tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-off"></span> Electrical Engg.</button><tr><td>
+	<tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-briefcase"></span> Management Studies</button><tr><td>
+	<tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-book"></span> Humanities</button><tr><td>
+	<tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-info-sign"></span> Engineering Physics</button><tr><td>
+	<tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-cog"></span> Metallurgy & Materials Sciences</button>  <tr><td>
+	<tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-signal"></span> Mathematics</button> <tr><td>  
+	<tr><td><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-picture"></span> Engineering Design</button> <tr><td>
+
+	</table>
+	</div>	
+    </div>
+  </div>
+
+  <div class="panel panel-default" style="width:230px">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Non Academic
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Fiction</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Biography</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Literature</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Magazine/Journal</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Art</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Fashion</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Romance</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Crime/Thriller</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Comics</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Sci-Fi</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Sports</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Non-fiction</button>   <br>
+	<button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-folder-open"></span> Classics</button>   <br>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+</body>
+</html>
+

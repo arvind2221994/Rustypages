@@ -1,0 +1,228 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+<link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css"/>
+<!--link type="text/css" rel="stylesheet" href="C:\Users\Aniruddha\Desktop\bootstrap3\bootstrap-3.0.0\dist\css\bootstrap.css"/-->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!--script src="C:\Users\Aniruddha\Desktop\bootstrap3\bootstrap-3.0.0\dist\js\bootstrap.js"></script-->
+<style>
+#results_panel{ position:absolute;
+margin-left:250px; height:100%;width:520px;-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	border-radius : 5px;
+	-o-border-radius : 5px;
+}
+#result1{position:relative;
+height:200px;width:520px;background-color:white;-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	border-radius : 5px;
+	-o-border-radius : 5px;
+
+}
+#accordion{  width:230px;}
+#status{
+background-color:#C0C0C0;
+-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	border-radius : 5px;
+	-o-border-radius : 5px;
+height:400px;
+width:350px;
+margin-left:790px;
+position:absolute;	
+}
+#info{
+margin-top:-350px;margin-left:350px;}
+</style>
+</head>
+<body style="background-color:#112020"> 
+<div class="container">
+
+      <!-- Static navbar -->
+      <div class="navbar navbar-default" role="navigation" cellpadding="100" style="height:60px;margin-left:80px">
+        <div class="navbar-header" >
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" style="background-color:blue" href="#">Project BookWorm</a>
+        </div>
+	<div class="navbar-text navbar-right">
+	  <p>Signed in as <a href="#" class="navbar-link"><span class="badge">Arvind Narayanan</span></a>
+	  <a class="btn btn-danger" type="submit" style="height: auto" href="http://ewb.iitm.ac.in/rustyp/homefinal.html"><span class="glyphicon glyphicon-off"></span>Sign out</a>
+	  </p>
+	</div>
+	
+	
+ <div class="navbar-collapse collapse">
+		<input style="position:absolute;margin-left:200px;margin-top:10px;width:300px;height:30px; align=center;" type="search" placeholder="Bookname" name="string" class="span3">   <button type="submit" style="position:absolute;margin-left:510px;margin-top:10px; align=center;"class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>       
+	<ul class="nav navbar-nav navbar-right">
+
+	
+
+
+	
+	
+		
+  		    </div>
+      	          </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+</div>
+</div>
+<div class="span3 bs-docs-sidebar" style="-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	border-radius : 5px;
+	-o-border-radius : 5px;margin-top:-50px;">
+<div>
+  <ul class="nav nav-list bs-docs-sidenav affix" style="background-color:#FFFFFF; margin-top:0px;">
+  <li class="active"><a href="#"><i class="glyphicon glyphicon-chevron-right"></i> My Profile</a></li>
+  <li><a href="http://ewb.iitm.ac.in/rustyp/queriespage.html"><i class="glyphicon glyphicon-chevron-right"></i> Previous Searches</a></li>
+  <li><a href="mybooks.html"><i class="glyphicon glyphicon-chevron-right"></i> My Books</a></li>
+  <li><a href="#settings" data-toggle="modal"><i class="glyphicon glyphicon-chevron-right"></i> Upload new book</a></li>
+  <li><a href="#feedback" data-toggle="modal"><i class="glyphicon glyphicon-chevron-right"></i> Feedback</a></li>
+  <li><a href="#settings" data-toggle="modal"><i class="glyphicon glyphicon-cog"></i> Privacy Settings</a></li>
+</ul>
+</div>
+<div class="container" style="margin-left:200px;margin-top:80px;width:1000px;height:500px;background-color:#FFFFFF;-webkit-border-radius: 5px;">
+  <h1> Welcome,Arvind Narayanan</h1>
+  <!--<table class="table">
+    <tr>
+      <th>
+	<div class="col-sm-1 col-md-3"></div>
+	<div class="col-sm-7 col-md-3">
+    <a href="#" class="thumbnail"> 
+      <img src="http://blurtonline.com/wp-content/uploads/2013/11/Calvin-Hobbes.jpg" alt="..."></img>
+    </a>
+	</div>
+    <div class="col-sm-1 col-md-3"><br><br><br><a class="btn btn-primary" href="#" target="_blank">Upload new Picture</a></div>
+      </th>
+    </tr>
+    <tr>
+      <td >Address</td>
+      <td class="thumbnail"><input value="Narmada"></input></td>
+    </tr>
+    <tr>
+    <td >Roll no</td>
+    <td class="thumbnail"><input value="me11b124"></input></td>
+    </tr>
+    <tr>
+    <td >Phone no</td>
+    <td class="thumbnail"><input value="1234567890"></input></td>
+    </tr>
+  </table>-->
+		
+      <a href="#"><img src="http://blurtonline.com/wp-content/uploads/2013/11/Calvin-Hobbes.jpg" alt="img1" class="img-thumbnail" style="width:300px;height:300px;"></img></a>
+	
+    <br><br><a class="btn btn-primary" href="#" target="_blank">Upload new Picture</a>
+	<div id="info">
+		<table class="table">
+    <tr>
+    </tr>
+    <tr>
+      <td >Hostel</td>
+      <td class="thumbnail" style="width:200px"><select>
+  					<option value="Alakananda">Alakananda</option>
+  					<option value="Jamuna">Jamuna</option>
+  					<option value="Ganga">Ganga</option>
+  					<option value="Brahmaputra">Brahmaputra</option>
+  					<option value="Sarayu">Sarayu</option>
+  					<option value="Sharavati">Sharavati</option>
+  					<option value="Tamiraparni">Tamiraparni</option>
+  					<option value="Sindhu">Sindhu</option>
+  					<option value="Krishna">Krishna</option>
+  					<option value="Kavery">Kaveri</option>
+  					<option value="Narmada">Narmada</option>
+  					<option value="Tapti">Tapti</option>
+  					<option value="Saraswati">Saraswati</option>
+  					<option value="Godavari">Godavari</option>
+  					<option value="Pampa">Pampa</option>
+  					<option value="Mahanadi">Mahanadi</option>
+  					</select></td>
+    </tr>
+	<tr>
+    <td >Room number</td>
+    <td class="thumbnail"  style="width:200px"><input placeholder="Enter room number"></input></td>
+    </tr>
+    <tr>
+    <td >Roll no</td>
+    <td class="thumbnail"  style="width:200px"><input placeholder="Enter roll number"></input></td>
+    </tr>
+    <tr>
+    <td >Phone number</td>
+    <td class="thumbnail"  style="width:240px"><b>+91- </b><input maxlength="10" placeholder="10-digit number"></input></td>
+    </tr>
+	<tr>
+    <td >About yourself</td>
+    <td class="thumbnail"  style="width:400px"><textarea rows="4" cols="40" placeholder="Describe yourself( max. limit 500 words)"></textarea></td>
+    </tr>
+	</table>	
+	<a href="#" class="btn btn-success" style="margin-top:-50px;margin-left:200px;"> Update Profile</a>
+
+			</div>
+  
+    </div>
+</div>
+<div class="modal fade" id="feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ 		 <div class="modal-dialog">
+   		 <div class="modal-content">
+     			 <div class="modal-header">
+        			<h4 class="modal-title" id="myModalLabel">Feedback</h4>
+      			 </div>
+      			<div class="modal-body">
+       			<form>
+				<label><span class="glyphicon glyphicon-envelope"></span>Your suggestions are very valuable to us</label>
+				<textarea rows="4" cols="50" placeholder="Word limit upto 200 words" ></textarea><br><br>
+				<button type="submit" class="btn btn-success">Submit</button>
+				<button type="reset" class="btn btn-warning">Clear</button>
+			</form>	
+      			</div>
+         	 </div><!-- /.modal-content -->
+  		 </div><!-- /.modal-dialog -->
+	</div>
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ 		 <div class="modal-dialog">
+   		 <div class="modal-content">
+     			 <div class="modal-header">
+        			<h4 class="modal-title" id="myModalLabel">Privacy Settings
+
+      			 </div>
+      			<div class="modal-body" style="height:200px">
+			  <p>Your name and roll number will be your primary means of contact.
+			  However you may choose to hide any other personal information as per your wish</p>
+			  <p><strong>I DONOT want to display the following details:</strong></p>
+       			
+        <input type="checkbox" >Phone Number</input>
+	        <input type="checkbox" >Room Number and Hostel</input>
+		<br><br>
+		 <a href="#" class="btn btn-danger" type="submit">Submit Changes</a></h4>
+			
+
+      </div><!-- /.col-lg-6 -->	
+      			</div>
+         	 </div><!-- /.modal-content -->
+  		 </div><!-- /.modal-dialog -->
+	</div>
+      			</div>
+         	 </div><!-- /.modal-content -->
+  		 </div><!-- /.modal-dialog -->
+	</div>
+
+
+
+</body>
+</html>
+
+
