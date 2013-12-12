@@ -1,0 +1,9 @@
+Form jquery temp[lates:
+1) http://harvesthq.github.io/chosen/
+2)http://blog.teamtreehouse.com/best-free-jquery-form-plugins-to-improve-user-experience     // See progression.js ,passy password generator
+3)http://www.marcofolio.net/webdesign/a_fancy_apple.com-style_search_suggestion.html          // Book page search engine suggestion
+4)http://www.designyourway.net/blog/resources/55-jquery-form-plugins-to-download-and-use/     //Date Picker UI templates....... lookup jqueryui
+5)http://jqueryui.com/effect/								     // Shake effect for login button
+6)http://fineuploader.com/								// File uploader
+7)https://github.com/webcreate/infinite-ajax-scroll					//Search results pagination using ajax
+8)http://jstayton.github.io/jquery-marcopolo/example1.html 				//Search engine autocomplete
