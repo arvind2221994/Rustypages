@@ -1,3 +1,9 @@
+<?php
+include 'db_connect.php';
+include 'functions.php';
+ 
+sec_session_start();
+?>
 
 
 <!DOCTYPE html>
@@ -45,6 +51,7 @@ margin-top:-350px;margin-left:350px;}
 </style>
 </head>
 <body style="background-color:#112020"> 
+<?php if (login_check($mysqli) == true) : ?>
 <div class="container">
 
       <!-- Static navbar -->
@@ -219,7 +226,12 @@ margin-top:-350px;margin-left:350px;}
          	 </div><!-- /.modal-content -->
   		 </div><!-- /.modal-dialog -->
 	</div>
-
+			<?php else : ?>
+            <p>
+               You are not authorized to access this page, please 
+               <a href="index.php">login</a>.
+            </p>
+			<?php endif; ?>
 
 
 </body>
