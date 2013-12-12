@@ -61,6 +61,7 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
         			<h4 class="modal-title" id="myModalLabel">Login details</h4>
       			 </div>
       			<div class="modal-body">
+<<<<<<< HEAD
        				<form action="process_login.php" method="post">
 					
 				<table class="table">
@@ -82,6 +83,17 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
 				</tr>
 				</table>
 				<button type="submit" value="login" onclick= "return true" class="btn btn-success">Login</button>
+=======
+       		<form action="process_login.php" method="post">
+				<label>EmailID</label>
+				<input type="email" style="width:200px"  name="email" placeholder=" Enter your email address" class="span3"/><br>
+				<label>Password</label>
+				<input type="text" name="password" placeholder="Keep it secure!" class="span3"/><br>
+				<button 
+				type="submit" 
+				value="login" 
+				onclick= "return true" class="btn btn-success">Login</button>
+>>>>>>> 0a19ffdd704ee01d5a41c5e30796174c906687fa
 				<button type="reset" class="btn">Clear</button>
 			</form>	
       			</div>
@@ -99,6 +111,7 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
   		      <h4 class="modal-title" id="myModalLabel">Registration</h4>
   		    </div>
   		    <div class="modal-body">
+<<<<<<< HEAD
 			<form action="register.php" method="post" name="registration_form">
 				<table class="table">
 					<tr>
@@ -188,6 +201,53 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
 							<button type="reset" class="btn">Clear</button>
 							
 			</form>
+=======
+			<form action="register.php"
+					method="post"
+					name="registration_form">
+			<label>Username</label>
+				<input type="text" name="username" placeholder="Choose a username" class="span3"/>		
+			<br><label>Name</label>
+				<input type="text" name="name" placeholder="Your name" class="span3"/>
+			<br><label>Roll number</label>
+				<input type="text" name="roll_no" placeholder="Roll number" class="span3"/>
+			<br><label>Hostel</label>
+					<select name="hostel">
+  					<option value="alak">Alakananda</option>
+  					<option value="jam">Jamuna</option>
+  					<option value="ganga">Ganga</option>
+  					<option value="brahms">Brahmaputra</option>
+  					<option value="sarayu">Sarayu</option>
+  					<option value="sharav">Sharavati</option>
+  					<option value="tambi">Tamiraparni</option>
+  					<option value="sindhu">Sindhu</option>
+  					<option value="krishna">Krishna</option>
+  					<option value="cauvery">Kaveri</option>
+  					<option value="narmad">Narmada</option>
+  					<option value="tapti">Tapti</option>
+  					<option value="saras">Saraswati</option>
+  					<option value="godav">Godavari</option>
+  					<option value="pampa">Pampa</option>
+  					<option value="mahanadi">Mahanadi</option>
+  					</select>
+				
+			<br><label>EmailID</label>
+				<input type="email" name="email" style="width:200px" placeholder=" Enter your email address" class="span3"/><br>
+			<br><label>Password</label>
+				<input type="password" name="password" placeholder="Password" class="span3"/><br>
+			<br><label>Confirm Password</label>
+				<input type="password" name="confirmpwd" placeholder="Retype Password" class="span3"/><br>
+			<br><button type="submit" value="Register" onclick="return regformhash(this.form,
+                                   this.form.username,
+								   this.form.name,
+								   this.form.roll_no,
+								   this.form.hostel,
+                                   this.form.email,
+                                   this.form.password,
+                                   this.form.confirmpwd);" class="btn btn-success">Submit</button>
+				<button type="reset" class="btn">Clear</button>
+				</form>
+>>>>>>> 0a19ffdd704ee01d5a41c5e30796174c906687fa
 		
   		    </div>
       	          </div><!-- /.modal-content -->
