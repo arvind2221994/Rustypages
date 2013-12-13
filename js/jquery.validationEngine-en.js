@@ -147,7 +147,7 @@
                     "alertText": "* This user is already taken",
                     "alertTextLoad": "* Validating, please wait"
                 },
-				"ajaxUserCallPhp": {
+                "ajaxUserCallPhp": {
                     "url": "phpajax/ajaxValidateFieldUser.php",
                     // you may want to pass extra data on the ajax call
                     "extraData": "name=eric",
