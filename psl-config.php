@@ -10,4 +10,4 @@ define("DATABASE", "secure_login");    // The database name.
 define("CAN_REGISTER", "any");
 define("DEFAULT_ROLE", "member");
  
-define("SECURE", FALSE);   
+define("SECURE", FALSE);

@@ -9,6 +9,11 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="jquery.js"></script>
+<script src="jquery.validation.js"></script>
+<script>
+$("registration").validate();
+</script>
 <style>
 #results_panel{ position:absolute;
 margin-left:350px; height:100%;width:720px;-webkit-border-radius : 5px;
@@ -72,7 +77,7 @@ position:absolute;margin-top:-80px;margin-left:630px;
         			<h4 class="modal-title" id="myModalLabel">Login details</h4>
       			 </div>
       			<div class="modal-body">
-       			<form>
+       			<form id="login" name="login">
 				<table class="table">
 				<tr>
 					<td>
@@ -113,7 +118,7 @@ position:absolute;margin-top:-80px;margin-left:630px;
   		      <h4 class="modal-title" id="myModalLabel">Registration</h4>
   		    </div>
   		    <div class="modal-body">
-        			<form>
+        			<form id="registration" name="registration">
 					<table class="table">
 						<tr>
 							<td>

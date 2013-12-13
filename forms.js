@@ -17,15 +17,17 @@ function formhash(form, password) {
  
 function regformhash(form, uid, name, roll, hostel, email, password, conf) {
      // Check each field has a value
-    if (uid.value == ''        || 
+    
+	if (uid.value == ''        || 
           name.value == ''  || 
           roll.value == ''  || 
           hostel.value == '' ||
           email.value == ''  || 
           password.value == ''|| 
           conf.value == '') {
- 
-        alert('You must provide all the requested details. Please try again');
+ 	    document.getElementById("warning").innerHTML="The fields marked by * are mandatory";
+
+        //alert('You must provide all the requested details. Please try again');
         return false;
     }
  
@@ -33,21 +35,21 @@ function regformhash(form, uid, name, roll, hostel, email, password, conf) {
  
     re = /^\w+$/;
     if(!re.test(form.username.value)) { 
-        alert("Username must contain only letters, numbers and underscores. Please try again"); 
+        //alert("Username must contain only letters, numbers and underscores. Please try again"); 
         form.username.focus();
         return false; 
     }
     
     re = /^([a-zA-Z]{2})([0-9]{2})[a-zA-Z]([0-9]{3})/;
     if(!re.test(form.roll_no.value)) { 
-        alert("Please enter a valid roll no."); 
+        //alert("Please enter a valid roll no."); 
         form.roll_no.focus();
         return false; 
     }
     
     re = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
     if(!re.test(form.email.value)) { 
-        alert("Incorrect Email ID"); 
+       // alert("Incorrect Email ID"); 
         form.email.focus();
         return false; 
     }
@@ -55,7 +57,7 @@ function regformhash(form, uid, name, roll, hostel, email, password, conf) {
     // The check is duplicated below, but this is included to give more
     // specific guidance to the user
     if (password.value.length < 8) {
-        alert('Passwords must be at least 8 characters long.  Please try again');
+        //alert('Passwords must be at least 8 characters long.  Please try again');
         form.password.focus();
         return false;
     }
@@ -65,13 +67,13 @@ function regformhash(form, uid, name, roll, hostel, email, password, conf) {
  
     var re = /^[a-z0-9_-]{6,18}$/  ; 
     if (!re.test(password.value)) {
-        alert('Passwords must contain at least one number, one lowercase and one uppercase letter.  Please try again');
+        //alert('Passwords must contain at least one number, one lowercase and one uppercase letter.  Please try again');
         return false;
     }
  
     // Check password and confirmation are the same
     if (password.value != conf.value) {
-        alert('Your password and confirmation do not match. Please try again');
+        //alert('Your password and confirmation do not match. Please try again');
         form.password.focus();
         return false;
     }

@@ -7,10 +7,22 @@
 
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
 <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css"/>
+<link rel="stylesheet" href="css/validationEngine.jquery.css" type="text/css"/>
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script type="text/JavaScript" src="forms.js"></script>
+<script src="js/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+	<script>
+		$(document).ready(function(){
+			// binds form submission and fields to the validation engine
+			$("#registration_form").validationEngine({promptPosition : "centerRight"});
+		});
+
+	</script>
+
 <style>
 
 
@@ -61,6 +73,8 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
         			<h4 class="modal-title" id="myModalLabel">Login details</h4>
       			 </div>
       			<div class="modal-body">
+				
+				<!-- LOGIN FORM-->
        				<form action="process_login.php" method="post">
 					
 				<table class="table">
@@ -68,8 +82,8 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
                                     <td>
                                         <label>EmailID</label>
                                     </td>
-                                    <td
-                                        <input type="email" style="width:200px"  placeholder=" Enter your email address" class="span3"/>
+                                    <td>
+                                        <input type="email" style="width:200px" name="email" placeholder=" Enter your email address" class="span3"/>
                                     </td>
 				</tr>
 				<tr>
@@ -77,7 +91,7 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
                                         <label>Password</label>
                                     </td>
                                     <td>
-                                        <input type="text" placeholder="Keep it secure!" class="span3"/>
+                                        <input type="password" name="password" placeholder="Keep it secure!" class="span3"/>
                                     </td>				
 				</tr>
 				</table>
@@ -99,148 +113,52 @@ margin-top:-45px;margin-left:220px;width:100px;color:yellow;}
   		      <h4 class="modal-title" id="myModalLabel">Registration</h4>
   		    </div>
   		    <div class="modal-body">
-<<<<<<< HEAD
-			<form action="register.php" method="post" name="registration_form">
-				<table class="table">
-					<tr>
-						<td>
-							<label>Username</label>
-						</td>
-						<td>
-							<input type="text" name="username" placeholder="Choose a username" class="span3"/>		
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label>Name</label>
-						</td>
-						<td>
-							<input type="text" name="name" placeholder="Your name" class="span3"/>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label>Roll number</label>
-						</td>
-						<td>
-							<input type="text" name="roll_no" placeholder="Roll number" class="span3"/>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label>Hostel</label>
-						</td>
-						<td>
-							<select name="hostel">
-  									<option value="default">Select hostel...</option>
-  									<option value="Alakananda">Alakananda</option>
-									<option value="Brahmaputra">Brahmaputra</option>  					
-									<option value="Ganga">Ganga</option>
-									<option value="Godavari">Godavari</option>					
-									<option value="Jamuna">Jamuna</option>
-  									<option value="Kavery">Kaveri</option>
-  									<option value="Krishna">Krishna</option>
-									<option value="Mahanadi">Mahanadi</option>
-									<option value="Mandakini">Mandakini</option>
-									<option value="Narmada">Narmada</option>
-									<option value="Pampa">Pampa</option>
-									<option value="Saraswati">Saraswati</option>
-  									<option value="Sarayu">Sarayu</option>
-  									<option value="Sarayuextn">Sarayu Extn.</option>
-  									<option value="Sharavati">Sharavati</option>
-  									<option value="Sindhu">Sindhu</option>
-									<option value="Tamiraparni">Tamiraparni</option>			
-  									<option value="Tapti">Tapti</option>  			
-  							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label>EmailID</label>
-						</td>
-						<td>
-							<input type="email" name="email" style="width:200px" placeholder=" Enter your email address" class="span3"/><br>	
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label>Password</label>
-						</td>
-						<td>
-							<input type="password" name="password" placeholder="Password" class="span3"/><br>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label>Confirm Password</label>
-						</td>
-						<td>
-							<input type="password" name="confirmpwd" placeholder="Retype Password" class="span3"/><br>
-						</td>
-					</tr>
-				</table>
-							<button type="submit" value="Register" onclick="return regformhash(this.form,this.form.username,
-								   this.form.name,
-								   this.form.roll_no,
-								   this.form.hostel,
-                                  			           this.form.email,
-                                  				   this.form.password,
-                                  				   this.form.confirmpwd);" class="btn btn-success">Submit</button>
-							<button type="reset" class="btn">Clear</button>
-							
-			</form>
-=======
-			<form action="register.php"
-					method="post"
-					name="registration_form">
-			<label>Username</label>
-				<input type="text" name="username" placeholder="Choose a username" class="span3"/>		
-			<br><label>Name</label>
-				<input type="text" name="name" placeholder="Your name" class="span3"/>
-			<br><label>Roll number</label>
-				<input type="text" name="roll_no" placeholder="Roll number" class="span3"/>
-			<br><label>Hostel</label>
-					<select name="hostel">
+
+			<!--REGISTER FORM-->
+			<form action="" method="post" name="registration_form" id="registration_form">
+			<fieldset>
+			<label for="username">Username*</label>
+				<input value="" class="validate[required]" type="text" name="username" id="username" placeholder="Choose a username" class="span3" class="cname"/>		
+			<br><label for="name">Name*</label>
+				<input type="text" class="validate[required]" name="name" id="name" placeholder="Your name" class="span3"/>
+			<br><label for="roll_no">Roll number*</label>
+				<input type="text" class="validate[required,custom[rollNo]]" name="roll_no" id="roll_no" placeholder="Roll number" class="span3"/>
+			<br><label for="hostel">Hostel*</label>
+					<select id="hostel" name="hostel">
   					<option value="alak">Alakananda</option>
   					<option value="jam">Jamuna</option>
   					<option value="ganga">Ganga</option>
   					<option value="brahms">Brahmaputra</option>
   					<option value="sarayu">Sarayu</option>
   					<option value="sharav">Sharavati</option>
-  					<option value="tambi">Tamiraparni</option>
+  					<option value="tambi">Tamiraparani</option>
   					<option value="sindhu">Sindhu</option>
   					<option value="krishna">Krishna</option>
-  					<option value="cauvery">Kaveri</option>
+  					<option value="cauvery">Cauvery</option>
   					<option value="narmad">Narmada</option>
   					<option value="tapti">Tapti</option>
   					<option value="saras">Saraswati</option>
   					<option value="godav">Godavari</option>
   					<option value="pampa">Pampa</option>
   					<option value="mahanadi">Mahanadi</option>
+                                        <option value="mandak">Mandakini</option>
   					</select>
 				
-			<br><label>EmailID</label>
-				<input type="email" name="email" style="width:200px" placeholder=" Enter your email address" class="span3"/><br>
-			<br><label>Password</label>
-				<input type="password" name="password" placeholder="Password" class="span3"/><br>
-			<br><label>Confirm Password</label>
-				<input type="password" name="confirmpwd" placeholder="Retype Password" class="span3"/><br>
-			<br><button type="submit" value="Register" onclick="return regformhash(this.form,
-                                   this.form.username,
-								   this.form.name,
-								   this.form.roll_no,
-								   this.form.hostel,
-                                   this.form.email,
-                                   this.form.password,
-                                   this.form.confirmpwd);" class="btn btn-success">Submit</button>
-				<button type="reset" class="btn">Clear</button>
+			<br><label for="email">Email-ID*</label>
+				<input class="validate[required,custom[email]]" type="email" id="email"  name="email" style="width:200px" placeholder=" Enter your email address"/><br>
+			<br><label for="password">Password*</label>
+				<input class="validate[required,custom[password]]" type="password" id="password" name="password" placeholder="Password" class="span3" data-prompt-position="centerRight"/><br>
+			<br><label for="confirmpwd">Confirm Password*</label>
+				<input class="validate[equals[password]]" type="password" id="confirmpwd" name="confirmpwd" placeholder="Retype Password" class="span3"/><br>
+				</fieldset>
+			<br><button type="submit" value="Register"  class="btn btn-success">Submit</button>
+                            <button type="reset" class="btn">Clear</button>
 				</form>
->>>>>>> 0a19ffdd704ee01d5a41c5e30796174c906687fa
-		
   		    </div>
-      	          </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+			<div id="warning"></div>
+      	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 	
 </div>
 </div>
