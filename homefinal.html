@@ -20,15 +20,16 @@
 
 function beforeCall(form, options){
         
-        alert('ajax search initiated');
+        //alert('ajax search initiated');
         
         return true;
 		}
     function ajaxValidationCallback(status, form, json, options){
         if (window.console)
         console.log(status);
+    
         if (status === true) {
-            alert("the form is valid!");
+            if(json[1]==false)alert(json);
             //// uncomment these lines to submit the form to form.action
             //form.validationEngine('detach');
             //form.submit();
@@ -41,6 +42,14 @@ function beforeCall(form, options){
 		// binds form submission and fields to the validation engine
 		
         $("#registration_form").validationEngine({
+            promptPosition : "centerRight",
+            ajaxFormValidation: true,
+            ajaxFormValidationMethod: 'post',
+            onBeforeAjaxFormValidation: beforeCall,
+            onAjaxFormComplete: ajaxValidationCallback
+        });
+        
+        $("#login_form").validationEngine({
             promptPosition : "centerRight",
             ajaxFormValidation: true,
             ajaxFormValidationMethod: 'post',
@@ -103,7 +112,7 @@ width:100px;text-align:center;margin-left:100px;margin-top:10px;color:yellow;}
 	<div class="modal-body">
 
 	<!-- LOGIN FORM-->
-	<form action="process_login.php" method="post">
+	<form action="phpajax/ajaxValidateUserLogin.php" id="login_form" method="post">
 
 	<table class="table">
 	<tr>
@@ -111,7 +120,7 @@ width:100px;text-align:center;margin-left:100px;margin-top:10px;color:yellow;}
 	<label>EmailID</label>
 	</td>
 	<td>
-	<input type="email" style="width:200px" name="email" placeholder=" Enter your email address" class="span3"/>
+	<input class="validate[required,custom[email]]" type="email" style="width:200px" id="email_login" name="email_login" placeholder=" Enter your email address" class="span3"/>
 	</td>
 	</tr>
 	<tr>
@@ -119,7 +128,7 @@ width:100px;text-align:center;margin-left:100px;margin-top:10px;color:yellow;}
 	<label>Password</label>
 	</td>
 	<td>
-	<input type="password" name="password" placeholder="Keep it secure!" class="span3"/>
+	<input class="validate[required,custom[password]]" type="password" name="password_login" id="password_login" placeholder="Keep it secure!" class="span3"/>
 	</td>				
 	</tr>
 	</table>
