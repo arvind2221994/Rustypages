@@ -17,11 +17,12 @@
 
 #accordion{  position:relative;width:230px;margin-top:-630px;}
 #bookpanel{
+font-family: "Times New Roman;",Times,serif;
 position:relative;height:630px;width:920px;
-margin-left:250px;-webkit-border-radius : 5px;
-	-moz-border-radius : 5px;
-	border-radius : 5px;
-	-o-border-radius : 5px;background-color:white;transition:height 2s;}
+margin-left:250px;-webkit-border-radius :0px;
+	-moz-border-radius : 0px;
+	border-radius : 0px;
+	-o-border-radius : 0px;background-color:white;transition:height 2s;}
 #footer{position:absolute;background-attachment:fixed;margin-top:20px;
 background-color:red;height:50px;-webkit-border-radius : 5px;
 	-moz-border-radius : 5px;
@@ -36,7 +37,7 @@ background-color:red;height:50px;-webkit-border-radius : 5px;
 
 </head>
 
-<body style="background-color:#112020"> 
+<body style="background-color:white"> 
 
 <div class="container">
 
@@ -170,14 +171,14 @@ background-color:red;height:50px;-webkit-border-radius : 5px;
 					</tr>
 
 				</table>
-				<button type="button" disabled="disabled"class="btn btn-success">Available</button>   <button type="button"  class="btn btn-danger">Unavailable</button>
+				<button type="button" style="height:30px;width:100px;-webkit-border-radius:0px;-moz-border-radius: 0px;border-radius: 0px;" disabled="disabled"class="btn btn-success">Available</button>   <button type="button"  class="btn btn-default" style="height:30px;width:100px;-webkit-border-radius:0px;-moz-border-radius: 0px;border-radius: 0px;">Unavailable</button>
 				<br><br>
 				
 			</div>
 		<div id="details"><b>
-			<table class="table">
-				<tr style="background-color:green;color:white;">
-					<td>Owner's Name</td><td>Roll Number</td><td>Hostel</td><td>Room Number</td><td>Phone Number</td><td>Email ID</td><td></td>
+			<table class="table table-striped">
+				<tr style="background-color:#CCCCCC;color:#CCCCCC;">
+					<thead style="background-color:#CCCCCC">Owner's Name</thead><thead>Roll Number</thead><thead>Hostel</thead><thead>Room Number</thead><thead>Phone Number</thead><thead>Email ID</thead><thead></thead>
 				</tr>
 				<tr>
 					<td><a href="profile.html">Arvind Narayanan</a></td><td>ME11B124</td><td>Narmada</td><td>2005</td><td>+91-123456789</td><td>abc@example.com</td><td><a href="#" class="btn btn-primary">Request book<i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i></a></td>
@@ -191,10 +192,10 @@ background-color:red;height:50px;-webkit-border-radius : 5px;
 	</div>
 
 
-<div class="panel-group" id="accordion">
+<div class="panel-group" id="accordion" style="width:120px">
   <div class="panel panel-default" >
     <div class="panel-heading">
-      <h4 class="panel-title">
+      <h4 class="panel-title" style="height:10px">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
           Academic
         </a>
@@ -203,8 +204,8 @@ background-color:red;height:50px;-webkit-border-radius : 5px;
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
 
-     <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-plane"></span> Aeroplane</button><br>
-     <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-wrench"></span> Mechanical</button><br>
+     <span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-plane"></span> Aerospace</span><br><br>
+     <span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-wrench"></span> Mechanical</span><br><br>
      <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-flag"></span> Naval Architecture</button><br>
      <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-hdd"></span> Computer Science</button><br>
      <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-home"></span> Civil</button><br>
