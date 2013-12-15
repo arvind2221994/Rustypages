@@ -6,21 +6,21 @@ require_once('db_connect.php');
 $validateValue = $_REQUEST["fieldValue"];
 $validateId=$_REQUEST["fieldId"];
 
-if ($stmt = $mysqli->prepare("SELECT roll_no 
+if ($stmt = $mysqli->prepare("SELECT email 
         FROM users
-       WHERE roll_no = ?
+       WHERE email = ?
         LIMIT 1"))
         $stmt->bind_param('s', $validateValue);  // Bind "$email" to parameter.
         $stmt->execute();    // Execute the prepared query.
         $stmt->store_result();
         // get variables from result.
-        $stmt->bind_result($rollno);
+        $stmt->bind_result($email);
         $stmt->fetch();
 
 ChromePhp::log($_REQUEST);
 
-$validateError= "This Roll No is already taken";
-$validateSuccess= "This username is available";
+$validateError= "This Email is already taken";
+$validateSuccess= "This Email is available";
 
 
 
@@ -29,7 +29,7 @@ $validateSuccess= "This username is available";
 	$arrayToJs[0] = $validateId;
         
 
-if($validateValue == $rollno){
+if($validateValue == $email){
     $arrayToJs[1] = false;
     echo json_encode($arrayToJs);
 }
