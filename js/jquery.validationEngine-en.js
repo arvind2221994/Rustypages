@@ -12,7 +12,7 @@
                     "alertTextDateRange": "* Both date range fields are required"
                 },
                 "rollNo": {
-                    "regex": /^([a-zA-Z]{2})([0-9]{2})[a-zA-Z]([0-9]{3})/,
+                    "regex": /^([a-zA-Z]{2})([0-9]{2})[a-zA-Z]([0-9]{3}$)/,
                     "alertText": "* Incorrect Roll No format"
                 },
                 "password": {
@@ -147,21 +147,24 @@
                     "alertText": "* This user is already taken",
                     "alertTextLoad": "* Validating, please wait"
                 },
-                "ajaxUserCallPhp": {
-                    "url": "phpajax/ajaxValidateUser.php",
+                "ajaxUserNameCall": {
+                    "url": "phpajax/ajaxValidateUsername.php",
                     // you may want to pass extra data on the ajax call
                     // if you provide an "alertTextOk", it will show as a green prompt when the field validates
-                    "alertTextOk": "* This username is available",
-                    "alertText": "* This user is already taken",
                     "alertTextLoad": "* Validating, please wait"
                 },
-                "ajaxRollCallPhp": {
+                "ajaxRollCall": {
                     "url": "phpajax/ajaxValidateRoll.php",
                     // you may want to pass extra data on the ajax call
                     // if you provide an "alertTextOk", it will show as a green prompt when the field validates
-                    "alertText": "* This Roll No is already taken",
+                    "alertTextLoad": "* Verifying your Roll no in our records",
                 },
-
+                "ajaxEmailCall": {
+                    "url": "phpajax/ajaxValidateMail.php",
+                    // you may want to pass extra data on the ajax call
+                    // if you provide an "alertTextOk", it will show as a green prompt when the field validates
+                    "alertTextLoad": "* Verifying your Email ID in our records",
+                },
                 "ajaxNameCall": {
                     // remote json service location
                     "url": "ajaxValidateFieldName",

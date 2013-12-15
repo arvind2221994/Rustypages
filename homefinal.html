@@ -19,13 +19,14 @@
 <script>
 
 function beforeCall(form, options){
-			if (window.console) 
-			console.log("Right before the AJAX form validation call");
-			return true;
+        
+        alert('ajax search initiated');
+        
+        return true;
 		}
     function ajaxValidationCallback(status, form, json, options){
         if (window.console)
-            console.log(status);
+        console.log(status);
         if (status === true) {
             alert("the form is valid!");
             //// uncomment these lines to submit the form to form.action
@@ -41,10 +42,11 @@ function beforeCall(form, options){
 		
         $("#registration_form").validationEngine({
             promptPosition : "centerRight",
-            ajaxFormValidation: false,
+            ajaxFormValidation: true,
             ajaxFormValidationMethod: 'post',
-            onAjaxFormComplete: ajaxValidationCallback,
-            onBeforeAjaxFormValidation: beforeCall});
+            onBeforeAjaxFormValidation: beforeCall,
+            onAjaxFormComplete: ajaxValidationCallback
+        });
     });
 
 </script>
@@ -144,11 +146,11 @@ width:100px;text-align:center;margin-left:100px;margin-top:10px;color:yellow;}
 	<form action="phpajax/ajaxValidateUser.php" method="post" name="registration_form" id="registration_form">
 	<fieldset>
 	<label for="username">Username*</label>
-	<input class="validate[required,ajax[ajaxUserCallPhp]]" type="text" name="username" id="username" placeholder="Choose a username" class="span3" class="cname"/>		
+	<input class="validate[required,ajax[ajaxUserNameCall]" type="text" name="username" id="username" placeholder="Choose a username" class="span3" class="cname"/>		
 	<br><label for="name">Name*</label>
 	<input type="text" class="validate[required]" name="name" id="name" placeholder="Your name" class="span3"/>
 	<br><label for="roll_no">Roll number*</label>
-	<input type="text" class="validate[required,custom[rollNo],ajax[ajaxRollCallPhp]]" name="roll_no" id="roll_no" placeholder="Roll number" class="span3"/>
+	<input type="text" class="validate[required,custom[rollNo]]" name="roll_no" id="roll_no" placeholder="Roll number" class="span3"/>
 	<br><label for="hostel">Hostel*</label>
 	<select id="hostel" name="hostel">
 	<option value="alak">Alakananda</option>
