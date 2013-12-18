@@ -39,4 +39,3 @@ if($emailValue== $email){		// validate??
 }
 ChromePhp::log($arrayToJs);
 echo json_encode($arrayToJs);
-

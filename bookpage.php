@@ -1,22 +1,23 @@
 <?php 
-
-$b_name = 'sup';
+$b_name='name';
+$b_author='author';
+$b_publisher='publisher';
+$b_description='description';
+include 'phpajax/db_connect.php';
 if(isset($_GET['id'])){
 	$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
-	$stmt = $mysqli->prepare("SELECT *
+	$stmt = $mysqli->prepare("SELECT b_id, b_name, b_author, b_description
         FROM book_data
-       WHERE id = ?
+       WHERE b_id = ?
         LIMIT 1");
-        $stmt->bind_param('s', $id);  
+        $stmt->bind_param('i', $id);  
         $stmt->execute();    // Execute the prepared query.
         $stmt->store_result();
         // get variables from result.
-        $stmt->bind_result($book);
+        $stmt->bind_result($b_id, $b_name, $b_author, $b_description);
         $stmt->fetch();
-		var_dump($book);
-}else{
-	echo "Invalid Page ID";
-	exit();
+		var_dump($b_name);
+		$b_publisher = 'TBD';
 }
 
 
@@ -190,13 +191,13 @@ background-color:black;height:50px;-webkit-border-radius : 5px;
 						<td><label><b><font size="4"color="green">NAME</font></b></label></td><td><font size="4"><?php echo $b_name;?></td>
 					</tr>
 					<tr>
-						<td><label><b><font size="4"color="green">AUTHOR(S)</font></b></label></td><td><font size="4">$b_author</td>
+						<td><label><b><font size="4"color="green">AUTHOR(S)</font></b></label></td><td><font size="4"><?php echo $b_author;?></td>
 					</tr>
 					<tr>
-						<td><label><b><font size="4"color="green">PUBLISHER</font></b></label></td><td><font size="4">$b_publisher</td>
+						<td><label><b><font size="4"color="green">PUBLISHER</font></b></label></td><td><font size="4"><?php echo $b_publisher;?></td>
 					</tr>
 					<tr>
-						<td><label><b><font size="4"color="green">DESCRIPTION</font></b></label></td><td><font size="4">This book gives a detailed insight into the world of Fluid Mechanics!</td>
+						<td><label><b><font size="4"color="green">DESCRIPTION</font></b></label></td><td><font size="4"><?php echo $b_description;?></td>
 					</tr>
 					<tr>
 						<td><label><b><font size="4"color="green">COURSE </font></b></label></td><td><font size="4">AM2530 Foundations of Fluid Mechanics<br>CH0007 Somerandomchemcourse</td>
