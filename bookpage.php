@@ -1,39 +1,21 @@
 <?php 
-$b_name='name';
-$b_author='author';
-$b_publisher='publisher';
-$b_description='description';
-include 'phpajax/db_connect.php';
-if(isset($_GET['id'])){
-	$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
-	$stmt = $mysqli->prepare("SELECT b_id, b_name, b_author, b_description
-        FROM book_data
-       WHERE b_id = ?
-        LIMIT 1");
-        $stmt->bind_param('i', $id);  
-        $stmt->execute();    // Execute the prepared query.
-        $stmt->store_result();
-        // get variables from result.
-        $stmt->bind_result($b_id, $b_name, $b_author, $b_description);
-        $stmt->fetch();
-		var_dump($b_name);
-		$b_publisher = 'TBD';
-}
+
 
 
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
-<link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css"/>
-<link type="text/css" rel="stylesheet" href="css/social-buttons-3.css"/>
+<link type="text/css" rel="stylesheet" href="/Rustypages/css/bootstrap.css"/>
+<link type="text/css" rel="stylesheet" href="/Rustypages/css/bootstrap-theme.css"/>
+<link type="text/css" rel="stylesheet" href="/Rustypages/css/social-buttons-3.css"/>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script src="/Rustypages/js/jquery.min.js"></script>
+<script src="/Rustypages/js/bootstrap.js"></script>
 <style>
 #back{width:100%; height: 380px;margin-left:100px; margin-top:200px;}
 #tags{margin-left:1200px;}
@@ -179,6 +161,29 @@ background-color:black;height:50px;-webkit-border-radius : 5px;
   		 </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<?php //php code to get book panel data
+include 'phpajax/db_connect.php';
+include 'phpajax/url_rewrite.php';
+
+
+if(isset($_GET['id'])){
+	$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
+	$stmt = $mysqli->prepare("SELECT b_id, b_title, b_author, b_description, b_publisher, b_course, b_course_title
+        FROM book_data
+       WHERE b_id = ?
+        LIMIT 1");
+        $stmt->bind_param('i', $id);  
+        $stmt->execute();    // Execute the prepared query.
+        $stmt->store_result();
+        // get variables from result.
+        $stmt->bind_result($b_id, $b_name, $b_author, $b_description, $b_publisher, $b_course, $b_course_title);
+        $stmt->fetch();
+		if (!isset($b_name)){header('Location: /error.html');}
+}
+
+
+?>
+
 	<div class="container" id="bookpanel">
 	    <ul class="thumbnails" id="ulthumbs">
 	      <li>
@@ -188,7 +193,7 @@ background-color:black;height:50px;-webkit-border-radius : 5px;
 			<div id="textbox" style="margin-top: -340px">
 				<table class="table table-bordered">
 					<tr>
-						<td><label><b><font size="4"color="green">NAME</font></b></label></td><td><font size="4"><?php echo $b_name;?></td>
+						<td><label><b><font size="4"color="green">NAME</font></b></label></td><td><font size="4"><?php echo GenerateLink($b_id,$b_name,$mysqli);?></td>
 					</tr>
 					<tr>
 						<td><label><b><font size="4"color="green">AUTHOR(S)</font></b></label></td><td><font size="4"><?php echo $b_author;?></td>
@@ -200,7 +205,7 @@ background-color:black;height:50px;-webkit-border-radius : 5px;
 						<td><label><b><font size="4"color="green">DESCRIPTION</font></b></label></td><td><font size="4"><?php echo $b_description;?></td>
 					</tr>
 					<tr>
-						<td><label><b><font size="4"color="green">COURSE </font></b></label></td><td><font size="4">AM2530 Foundations of Fluid Mechanics<br>CH0007 Somerandomchemcourse</td>
+						<td><label><b><font size="4"color="green">COURSE </font></b></label></td><td><font size="4"><?php echo $b_course.' '.$b_course_title;?></td>
 					</tr>
 					
 					<tr>
