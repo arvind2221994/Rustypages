@@ -68,6 +68,7 @@ width:100px;text-align:center;margin-left:100px;margin-top:10px;color:yellow;}
 	</div>
 	<div class="modal-body">
 
+<?php include 'phpajax/checklogin.php'?>
 
 <script>
 
@@ -86,9 +87,12 @@ function beforeCall(form, options){
 			form.attr('action','phpajax/process_login.php');
 			form.validationEngine('detach');
 			form.submit();}
+			else{
+			$("#email_login").validationEngine('showPrompt',json[2],'load');
+			}
             //// uncomment these lines to submit the form to form.action
-            alert("1");
-			form.validationEngine('detach');
+            //alert("1");
+			//form.validationEngine('detach');
 			//form.submit();
             //// or you may use AJAX again to submit the data
         }
@@ -110,7 +114,6 @@ function beforeCall(form, options){
             promptPosition : "centerRight",
             ajaxFormValidation: true,
             ajaxFormValidationMethod: 'post',
-            onBeforeAjaxFormValidation: beforeCall,
             onAjaxFormComplete: ajaxValidationCallback
         });
     });
@@ -234,9 +237,6 @@ function beforeCall(form, options){
 	<a href="#creditmodal" class="btn btn-info" data-toggle="modal"><span class="glyphicon glyphicon-credit-card"></span> Credits</a>
 	</div>
 	<div style="margin-left:1000px;margin-top:-37px">
-	<img src="http://www.shaastra.org/2014/main/static/img/icons/social_twitter_color.png" alt="fb"/>
-	<img src="http://www.shaastra.org/2014/main/static/img/icons/social_google_color.png" alt="fb"/>
-	<img src="http://www.shaastra.org/2014/main/static/img/icons/social_fb_color.png" alt="fb"/>
 	</div>
 	</div>
 

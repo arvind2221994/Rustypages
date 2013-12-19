@@ -37,5 +37,4 @@ if($emailValue== $email){		// validate??
 	$arrayToJs[1] = false;			// RETURN TRUE
 	$arrayToJs[2] = "This email is not registered";    
 }
-ChromePhp::log($arrayToJs);
 echo json_encode($arrayToJs);

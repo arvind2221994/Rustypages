@@ -44,7 +44,7 @@ if($usernameValue!= $username){		// validate??
 }else{
 	$arrayToJs[0][0] = 'username';
 	$arrayToJs[0][1] = false;			// RETURN TRUE
-	$arrayToJs[0][2] = "This username is not available";    
+	$arrayToJs[0][2] = "This username is not available!!!";    
 }
 
 if ($stmt = $mysqli->prepare("SELECT roll_no

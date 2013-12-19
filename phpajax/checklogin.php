@@ -2,7 +2,7 @@
 require_once('db_connect.php');
 
 session_start();
-session_destroy();
+//session_destroy();
 if($_SESSION){
 	if($_SESSION['pass_ok']==1){
 		$user_browser = preg_replace("/[a-zA-Z\s+[:punct:]]+/","",$_SERVER['HTTP_USER_AGENT']);
@@ -24,11 +24,12 @@ if($_SESSION){
         $stmt->fetch();
 		if($user_id == $userid){
 			//USER LOGGED IN			
-			
+		$toggle=1;
 		}
 		else
 		{
-		header('Location: /error.html');
+		$toggle=0;
+		echo "NOT LOGGED IN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
 		}
 
 		
@@ -36,5 +37,6 @@ if($_SESSION){
 	}
 }
 else{
-header('Location: /error.html');
+$toggle=0
+//header('Location: /error.html');
 }

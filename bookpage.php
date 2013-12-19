@@ -178,7 +178,7 @@ if(isset($_GET['id'])){
         // get variables from result.
         $stmt->bind_result($b_id, $b_name, $b_author, $b_description, $b_publisher, $b_course, $b_course_title);
         $stmt->fetch();
-		if (!isset($b_name)){header('Location: /error.html');}
+		//if (!isset($b_name)){header('Location: /error.html');}
 }
 
 
