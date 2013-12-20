@@ -1,45 +1,55 @@
-<?php 
- header('Content-type: text/html; charset=utf-8'); 
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<link type="text/css" rel="stylesheet" href="/Rustypages/css/bootstrap.css"/>
-<link type="text/css" rel="stylesheet" href="/Rustypages/css/bootstrap-theme.css"/>
-<link type="text/css" rel="stylesheet" href="/Rustypages/css/social-buttons-3.css"/>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+<link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css"/>
 
-<script src="/Rustypages/js/jquery.min.js"></script>
-<script src="/Rustypages/js/bootstrap.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="jquery.js"></script>
+<script src="jquery.validation.js"></script>
+<script>
+$("registration").validate();
+</script>
 <style>
-#back{width:100%; height: 380px;margin-left:100px; margin-top:200px;}
-#tags{margin-left:1200px;}
-#loginsignup{margin-left:10px;margin-top:-30px;}
-
-#accordion{  position:relative;width:230px;margin-top:-500px;}
-#bookpanel{
-	font-family: "Times New Roman;",Times,serif;
-	position:relative;height:630px;width:920px;margin-top:50px;
-	margin-left:250px;-webkit-border-radius :0px;
-	-moz-border-radius : 0px;
-	border-radius : 0px;
-	-o-border-radius : 0px;background-color:white;transition:height 2s;}
-#footer{position:relative;background-attachment:fixed;margin-top:500px;
-	background-color:black;height:50px;-webkit-border-radius : 5px;
+#results_panel{ position:absolute;
+margin-left:350px; height:100%;width:720px;-webkit-border-radius : 5px;
 	-moz-border-radius : 5px;
 	border-radius : 5px;
 	-o-border-radius : 5px;
 }
-#textbox{margin-top:-270px;margin-left:300px;}
-#owner{background-visibility:hidden;}
-#details{background-color:#B0B0B0; }
+.result{position:relative;
+height:120px;width:760px;background-color:white;-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	border-radius : 5px;
+	-o-border-radius : 5px;
+
+}
+#accordion{  width:230px;}
+#status{
+background-color:#C0C0C0;
+-webkit-border-radius : 5px;
+	-moz-border-radius : 5px;
+	border-radius : 5px;
+	-o-border-radius : 5px;
+height:500px;
+width:350px;
+margin-left:790px;
+position:absolute;	
+}
+#img{
+margin-top:10px;margin-left:20px;height:90px;width:90px;
+}
+.tags{
+position:absolute;margin-top:-80px;margin-left:630px;
+}
 </style>
-
 </head>
-
-<body style="background-color:white"> 
+<body style="background-color:#202020"> 
+<div class="container">
 
 <div class="container">
 
@@ -63,7 +73,7 @@
                 if(!$toggle) : //logged out?>
         <link rel='stylesheet' href='/Rustypages/css/validationEngine.jquery.css' type='text/css'/>
         <link href='/Rustypages/css/progression.css' rel='stylesheet' type='text/css'>
-            <script type='text/javascript' src='/Rustypages/js/progression.js'></script>
+            <script type='text/javascript' src='js/progression.js'></script>
             <script src='/Rustypages/js/jquery.validationEngine-en.js' type='text/javascript' charset='utf-8'></script>
             <script src='/Rustypages/js/jquery.validationEngine.js' type='text/javascript' charset='utf-8'></script>
 
@@ -205,123 +215,109 @@ $(document).ready(function(){
 </div>
 
 
-<?php //php code to get book panel data
-include 'phpajax/url_rewrite.php';
+
+<!-- Sample of a search result-->
+<div id="results_panel">
+
+		<div class="result">
+			
+			<img src="http://covers.booktopia.com.au/big/9780470547557/fox-and-mcdonald-s-introduction-to-fluid-mechanics.jpg" alt="book1" id="img"class="img-thumbnail">
+			<p style="margin-top:-80px;margin-left:120px;"><font size="3"><b><font color="green">Name:</font>Introduction to Fluid Mechanics</b><br><b><font color="green">Author:</font>Robert W.Fox, Alan T.McDonald and Philip J.Pritchard</b><br><b><font color="green">Course:</font>AM2530 Foundations of Fluid Mechanics<a href="#"><span class="badge">Preview</span></a></b></font><br></p>
+			<div class="tags"><button class="btn btn-success">Available</button><br><br><button class="btn btn-danger">Unavailable</button></div>
+		</div>
+	<br>
+		<div class="result">
+			
+			<img src="http://www-fp.pearsonhighered.com/assets/hip/images/bigcovers/0131481908.jpg" alt="book1" id="img"class="img-thumbnail">
+			<p style="margin-top:-80px;margin-left:120px;"><font size="3"><b><font color="green">Name:</font>Machine Design(5th Edition)</b><br><b><font color="green">Author:</font>Robert L.Norton</b><br><b><font color="green">Course:</font>ME3350 Design of Machine Elements</b></font></p>
+			<div class="tags"><button class="btn btn-success">Available</button><br><br><button class="btn btn-danger">Unavailable</button></div>
+
+		</div>
+	<br>
+		<div class="result">
+			
+			<img src="http://www.gobookshopping.com/uploads/books/web/content/UBS/uploads/books/9781259006197.jpg" alt="book1" id="img" class="img-thumbnail">
+			<p style="margin-top:-80px;margin-left:120px;"><font size="3"><b><font color="green">Name:</font>Internal Combustion Engines</b><br><b><font color="green">Author:</font>V. Ganesan</b><br><b><font color="green">Course:</font>ME3330: IC Engines</b></font></p>
+			<div class="tags"><button class="btn btn-success">Available</button><br><br><button class="btn btn-danger">Unavailable</button></div>
+
+		</div>
 
 
-if(isset($_GET['id'])){
-    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_STRING);
-    if($id==''){header('Location: /Rustypages/phpajax/404notfound.php');}
-    $stmt = $mysqli->prepare("SELECT b_id, b_title, b_author, b_description, b_publisher, b_course, b_course_title
-        FROM book_data
-        WHERE b_id = ?
-        LIMIT 1");
-    $stmt->bind_param('i', $id);  
-    $stmt->execute();    // Execute the prepared query.
-    $stmt->store_result();
-// get variables from result.
-    $stmt->bind_result($b_id, $b_name, $b_author, $b_description, $b_publisher, $b_course, $b_course_title);
-    $stmt->fetch();
-//if (!isset($b_name)){header('Location: /error.html');}
-    }
-    else{header('Location: /Rustypages/phpajax/404notfound.php');}
-    
-    
-    ?>
-    
-    <div class="container" id="bookpanel">
-        <ul class="thumbnails" id="ulthumbs">
-            <li>
-                <a class="thumbnail" style="width:270px;height:320px;margin-left:-15px;margin-top:100px;" ><img style="height:290px;width:270px;"src="/Rustypages/images/flumech.jpg" id="image" alt="book1"class="img" style="border: thick;"></a>
-            </li>
-        </ul>
-        <div id="textbox" style="margin-top: -340px">
-            <table class="table table-bordered">
-                <tr><td><label><b><font size="4"color="green">NAME</font></b></label></td><td><font size="4"><?php echo GenerateLink($b_id,$b_name,$mysqli);?></td></tr>
-                <tr><td><label><b><font size="4"color="green">AUTHOR(S)</font></b></label></td><td><font size="4"><?php echo $b_author;?></td></tr>
-                <tr><td><label><b><font size="4"color="green">PUBLISHER</font></b></label></td><td><font size="4"><?php echo $b_publisher;?></td></tr>
-                <tr><td><label><b><font size="4"color="green">DESCRIPTION</font></b></label></td><td><font size="4"><?php echo ($b_description);?></td></tr>
-                <tr><td><label><b><font size="4"color="green">COURSE </font></b></label></td><td><font size="4"><?php echo $b_course.' '.$b_course_title;?></td></tr>
-                <tr><td><label><b><font size="4"color="green">DEPARTMENT</font></b></label></td><td><font size="4">Mechanical Engineering</td></tr>
-            </table>
-            <br><br>
-                    </div>
-        <div><b>
-                <div class="alert alert-danger">
-                    <div>This book is unavailable</div>
-                </div>
-                <!--button type="button" style="height:30px;width:100px;-webkit-border-radius:0px;-moz-border-radius: 0px;border-radius: 0px;" disabled="disabled"class="btn btn-success">Available</button>   <button type="button"  class="btn btn-default" style="height:30px;width:100px;-webkit-border-radius:0px;-moz-border-radius: 0px;border-radius: 0px;">Unavailable</button-->
-                <table class="table table-bordered">
-                    <tr><th>Owner's Name</th><th>Roll Number</th><th>Hostel</th><th>Room Number</th><th>Phone Number</th><th>Email ID</th><th></th></tr>
-                    <tr><td><a href="profile.html">Arvind Narayanan</a></td><td>ME11B124</td><td>Narmada</td><td>2005</td><td>+91-123456789</td><td>abc@example.com</td><td><a href="#" class="btn btn-primary">Request book<i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i></a></td></tr>
-                    <tr><td>Aniruddha Tamhane</td><td>CH11B066</td><td>Narmada</td><td>2010</td><td>+91-123456789</td><td>abc2@example.com</td><td><a href="#" class="btn btn-primary">Request book<i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i></a></td></tr>
-                </table></b>
-        </div>
-       <!--<b><a href="#">Go to Owner's profile<i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i><i class="glyphicon glyphicon-chevron-right"></i></a></b>-->
+</div>
+
+<!--<div class="container" id="status">
+<br><img src='http://covers.booktopia.com.au/big/9780470547557/fox-and-mcdonald-s-introduction-to-fluid-mechanics.jpg' alt='book1' style='height:200px;width:200px'class='img-rounded'><br><br><p><font size="4"><b><font color='green'>Name:</font>Introduction to Fluid Mechanics</b><br><br><b><font color='green'>Author:</font>Robert W.Fox, Alan T.McDonald and Philip J.Pritchard</b><br><br><b><font color='green'>Course:</font>AM2530 Foundations of Fluid Mechanics</b></font></p><button type='submit' style='margin-left:220px' class="btn btn-danger"> More<span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span></button><br>
+</div>-->
+
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default" style="width:330px" >
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          <b>Academic</b>
+        </a>
+      </h4>
     </div>
-    
-    
-						<div class="panel-group" id="accordion" style="width:200px;margin-left: 0px;">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title" style="height:10px">
-										<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Academic</a>
-									</h4>
-								</div>
-								<div id="collapseOne" class="panel-collapse collapse in">
-									<div class="panel-body">
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+	<table class="table">
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-plane"></span> All types</a></td></tr>
+     	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-plane"></span> Aerospace Engg.</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-tint"></span> Biotechnology</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-fire"></span> Chemical Engg.</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-home"></span> Civil Engg.</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-fire"></span> Chemistry</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-hdd"></span> Computer Science & Engg.</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-off"></span> Electrical Engg.</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-info-sign"></span> Engineering Physics</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-picture"></span> Engineering Design</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-book"></span> Humanities</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-signal"></span> Mathematics</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-wrench"></span> Mechanical Engg.</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-cog"></span> Metallurgical & Material Sciences</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-briefcase"></span> Management Studies</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-flag"></span> Naval Architecture & Ocean Engg.</a></td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-leaf"></span> Physics</a></td></tr>
+	
+	</table>
+	</div>	
+    </div>
+  </div>
 
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-plane"></span>AE</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-tint"></span>BT/BS</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-wrench"></span>ME</span><br><br></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-flag"></span>NA/OE/OS</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-hdd"></span>CS</span><br><br></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-home"></span>CE</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-leaf"></span>Env</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-fire"></span>CH</span><br><br></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-off"></span>EE</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-briefcase"></span>MS</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-book"></span>HS</span><br><br></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-info-sign"></span>EP</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-cog"></span>MM</span> </a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-signal"></span>MA</span><br><br></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-picture"></span>ED</span></a>
+  <div class="panel panel-default" style="width:330px">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+         <b>Non Academic</b>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+	<table class="table">
+        <tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Fiction</a></td>  </tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Biography</a>  </tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Literature</a>   </td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Magazine/Journal</a>  </td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Art</a>  </td> </tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Fashion</a> </td> </tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Romance</a>   </td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Crime/Thriller</a> </td> </tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Comics</a>  </td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Sci-Fi</a>   </td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Sports</a>   </td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Non-fiction</a>   </td></tr>
+	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Classics</a>  </td></tr>
+	</table>
+      </div>
+    </div>
+  </div>
 
-
-									</div>	
-								</div>
-							</div>
-
-							<div class="panel panel-default" style="width:200px">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Non Academic</a>
-									</h4>
-								</div>
-								<div id="collapseTwo" class="panel-collapse collapse">
-									<div class="panel-body">
-										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Fiction</span>
-										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Biography</span><br><br>
-										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Lit</span>
-										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Magazine</span><br><br>
-										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Art</span>
-										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Fashion</span>
-									</div>
-								</div>
-							</div>
-
-						</div>
-
-						<footer>
-							<div id="footer" class="footer-wrapper" >
-								<img></img>
-
-							</div>
-						</footer>
+</div>
 
 
 
-
-						</body>
-						</html>
+</body>
+</html>
 

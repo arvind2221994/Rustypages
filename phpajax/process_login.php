@@ -11,10 +11,11 @@ if (isset($_POST['email_login'], $_POST['password_login'])) {
 
     if (login($email, $password, $mysqli) == true) {
         // Login success 
-        header('Location: ../test_toggle_forms.php');
+        header('Location: ../index.php');
     } else {
         // Login failed 
-        //header('Location: /error.html');
+        echo "<script type='text/javascript'>alert('Login failed. Go back and try again');</script>";
+		//header('Location: ../index.php');
     }
 } else {
     // The correct POST variables were not sent to this page. 

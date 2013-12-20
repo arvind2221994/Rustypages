@@ -24,8 +24,6 @@ function GenerateLink ($id,$text,$mysqli) {
         $stmt->fetch();
 	
 	$b_name = GenerateUrl ($b_name);	//create cleaned version of the title
-	$link_1 = '<a href="http://localhost/Rustypages/book/' . $b_name . '/' . $id . '">';
-	$link_2 = $text . '</a>';
-	return $link_1 . $link_2;
+	$link = "<a href='http://localhost/Rustypages/book/" . $b_name . "/" . $id . "'>" . $text . "</a>";
+	return $link;
 }
-?>
