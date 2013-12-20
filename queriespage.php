@@ -11,9 +11,6 @@
 <script src="js/bootstrap.js"></script>
 <script src="jquery.js"></script>
 <script src="jquery.validation.js"></script>
-<script>
-$("registration").validate();
-</script>
 <style>
 #results_panel{ position:absolute;
 margin-left:350px; height:100%;width:720px;-webkit-border-radius : 5px;
@@ -44,14 +41,14 @@ position:absolute;
 margin-top:10px;margin-left:20px;height:90px;width:90px;
 }
 .tags{
-position:absolute;margin-top:-80px;margin-left:630px;
+    position:absolute;margin-top:-80px;margin-left:630px;
 }
 </style>
 </head>
-<body style="background-color:#202020"> 
-<div class="container">
-
-<div class="container">
+    <body style="background-color:#202020"> 
+        <div class="container">
+            
+            <div class="container">
 
     <!-- Static navbar -->
     <div class="navbar navbar-default" role="navigation" style=" background-color:black" cellpadding="100">
