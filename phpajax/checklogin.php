@@ -29,6 +29,7 @@ if($_SESSION){
 		else
 		{
 		$toggle=0;
+		//var_dump($_SEESION);
 		echo "NOT LOGGED IN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
 		}
 
@@ -37,6 +38,6 @@ if($_SESSION){
 	}
 }
 else{
-$toggle=0
+$toggle=0;
 //header('Location: /error.html');
 }

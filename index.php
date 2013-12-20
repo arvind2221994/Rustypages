@@ -7,14 +7,11 @@
 
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
 <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css"/>
-<link rel="stylesheet" href="css/validationEngine.jquery.css" type="text/css"/>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<!--<script src="js/jquery.min.js"></script>-->
+<script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<script type="text/JavaScript" src="forms.js"></script>
-<script src="js/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+
 
 
 <style>
@@ -58,153 +55,141 @@ width:100px;text-align:center;margin-left:100px;margin-top:10px;color:yellow;}
 	<div class="navbar-collapse collapse">
 	<ul class="nav navbar-nav navbar-right">
 
-	<a href="#myModal"  class="btn btn-primary" data-toggle="modal">Browse</a>	
-	<a href="#myModal"  class="btn btn-warning" data-toggle="modal">Login</a>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-	<div class="modal-content">
-	<div class="modal-header">
-	<h4 class="modal-title" id="myModalLabel">Login details</h4>
-	</div>
-	<div class="modal-body">
+	<a href="#myModal"  class="btn btn-primary" data-toggle="modal">Browse</a>
 
-<?php include 'phpajax/checklogin.php'?>
+<?php include 'phpajax/checklogin.php';
+//$toggle = 1 means logged in, 0 means logged out
+if(!$toggle) : //logged out?>
+<link rel='stylesheet' href='css/validationEngine.jquery.css' type='text/css'/>
+<link href='css/progression.css' rel='stylesheet' type='text/css'>
+<script type='text/javascript' src='js/progression.js'></script>
+<script src='js/jquery.validationEngine-en.js' type='text/javascript' charset='utf-8'></script>
+<script src='js/jquery.validationEngine.js' type='text/javascript' charset='utf-8'></script>
 
 <script>
-
-function beforeCall(form, options){
-        
-        //alert('ajax search initiated');
-        
-        return true;
-		}
-    function ajaxValidationCallback(status, form, json, options){
-        if (window.console)
-        console.log(status);
-    
-        if (status === true) {
-			if(json[1]==true){
-			form.attr('action','phpajax/process_login.php');
-			form.validationEngine('detach');
-			form.submit();}
-			else{
-			$("#email_login").validationEngine('showPrompt',json[2],'load');
-			}
-            //// uncomment these lines to submit the form to form.action
-            //alert("1");
-			//form.validationEngine('detach');
-			//form.submit();
-            //// or you may use AJAX again to submit the data
-        }
-    }
-
-    
-    $(document).ready(function(){
+$(document).ready(function(){
 		// binds form submission and fields to the validation engine
-		
-        $("#registration_form").validationEngine({
-            promptPosition : "centerRight",
+        $('#registration_form').validationEngine({
+            promptPosition : 'centerRight',
             ajaxFormValidation: true,
             ajaxFormValidationMethod: 'post',
-            onBeforeAjaxFormValidation: beforeCall,
-            onAjaxFormComplete: ajaxValidationCallback
-        });
-        
-        $("#login_form").validationEngine({
-            promptPosition : "centerRight",
+            onAjaxFormComplete: function (status,form,json,options){
+				if (status == true){
+					if(json[1][1]==true && json[2][1]==true){
+						form.attr('action','phpajax/register.php');
+						form.submit();
+					}
+					else if(json[1][1]==false){		//rollno is not available
+						$('#roll_no').validationEngine('showPrompt',json[1][2]);
+						if(json[2][1]==false){		//email is not available
+						$('#email_register').validationEngine('showPrompt',json[2][2]);}
+					}
+					else{
+					$('#email_register').validationEngine('showPrompt',json[2][2]);}
+				}
+			}
+        });        
+        $('#login_form').validationEngine({
+            promptPosition : 'centerRight',
             ajaxFormValidation: true,
             ajaxFormValidationMethod: 'post',
-            onAjaxFormComplete: ajaxValidationCallback
+            onAjaxFormComplete: function (status,form,json,options){
+			if (status == true) {
+				if(json[1]==true){
+				form.attr('action','phpajax/process_login.php');
+				form.validationEngine('detach');
+				form.submit();}
+				else{$('#email_login').validationEngine('showPrompt',json[2]);}
+			}
+			}
         });
-    });
-
-</script>
-
+});
+</script>	
+	<a href='#myModal'  class='btn btn-warning' data-toggle='modal'>Login</a>
+	<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+	<div class='modal-dialog'>
+	<div class='modal-content'>
+	<div class='modal-header'>
+	<h4 class='modal-title' id='myModalLabel'>Login details</h4>
+	</div>
+	<div class='modal-body'>
 	<!-- LOGIN FORM-->
-	<form action="phpajax/ajaxValidateUserLogin.php" name="login_form" id="login_form" method="post">
-
-	<table class="table">
+	<form action='phpajax/ajaxValidateUserLogin.php' name='login_form' id='login_form' method='post'>
+	<table class='table'>
 	<tr>
-	<td>
-	<label>EmailID</label>
-	</td>
-	<td>
-	<input class="validate[required,custom[email]]" type="email" style="width:200px" id="email_login" name="email_login" placeholder=" Enter your email address" class="span3"/>
-	</td>
+	<td><label>EmailID</label></td>
+	<td><input data-progression class='validate[required,custom[email]]' type='email' style='width:200px' id='email_login' name='email_login' data-helper=' Enter your email address' class='span3'/></td>
 	</tr>
 	<tr>
-	<td>
-	<label>Password</label>
-	</td>
-	<td>
-	<input class="validate[required,custom[password]]" type="password" name="password_login" id="password_login" placeholder="Keep it secure!" class="span3"/>
-	</td>				
+	<td><label>Password</label></td>
+	<td><input class='validate[required,custom[password]]' type='password' name='password_login' id='password_login' placeholder='Keep it secure!' class='span3'/></td>				
 	</tr>
 	</table>
-	<button type="submit" value="login" onclick= "return true" class="btn btn-success">Login</button>
-	<button type="reset" class="btn">Clear</button>
+	<button type='submit' value='login' onclick= 'return true' class='btn btn-success'>Login</button>
+	<button type='reset' class='btn'>Clear</button>
 	</form>	
 	</div>
 	</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-
-
-	<a href="#myModal1"  class="btn btn-success" data-toggle="modal">Signup</a>
-	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-	<div class="modal-content">
-	<div class="modal-header">
-	<h4 class="modal-title" id="myModalLabel">Registration</h4>
+	<a href='#myModal1'  class='btn btn-success' data-toggle='modal'>Signup</a>
+	<div class='modal fade' id='myModal1' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+	<div class='modal-dialog'>
+	<div class='modal-content'>
+	<div class='modal-header'>
+	<h4 class='modal-title' id='myModalLabel'>Registration</h4>
 	</div>
-	<div class="modal-body">
+	<div class='modal-body'>
 
 	<!--REGISTER FORM-->
-	<form action="phpajax/ajaxValidateUser.php" method="post" name="registration_form" id="registration_form">
+	<form action='phpajax/ajaxValidateUser.php' method='post' name='registration_form' id='registration_form'>
 	<fieldset>
-	<label for="username">Username*</label>
-	<input class="validate[required,ajax[ajaxUserNameCall]" type="text" name="username" id="username" placeholder="Choose a username" class="span3" class="cname"/>		
-	<br><label for="name">Name*</label>
-	<input type="text" class="validate[required]" name="name" id="name" placeholder="Your name" class="span3"/>
-	<br><label for="roll_no">Roll number*</label>
-	<input type="text" class="validate[required,custom[rollNo]]" name="roll_no" id="roll_no" placeholder="Roll number" class="span3"/>
-	<br><label for="hostel">Hostel*</label>
-	<select id="hostel" name="hostel">
-	<option value="alak">Alakananda</option>
-	<option value="jam">Jamuna</option>
-	<option value="ganga">Ganga</option>
-	<option value="brahms">Brahmaputra</option>
-	<option value="sarayu">Sarayu</option>
-	<option value="sharav">Sharavati</option>
-	<option value="tambi">Tamiraparani</option>
-	<option value="sindhu">Sindhu</option>
-	<option value="krishna">Krishna</option>
-	<option value="cauvery">Cauvery</option>
-	<option value="narmad">Narmada</option>
-	<option value="tapti">Tapti</option>
-	<option value="saras">Saraswati</option>
-	<option value="godav">Godavari</option>
-	<option value="pampa">Pampa</option>
-	<option value="mahanadi">Mahanadi</option>
-	<option value="mandak">Mandakini</option>
+	<label for='username'>Username*</label>
+	<input class='validate[required,ajax[ajaxUserNameCall]' type='text' name='username' id='username' placeholder='Choose a username' class='span3' class='cname'/>		
+	<br><label for='name'>Name*</label>
+	<input type='text' class='validate[required]' name='name' id='name' placeholder='Your name' class='span3'/>
+	<br><label for='roll_no'>Roll number*</label>
+	<input type='text' class='validate[required,custom[rollNo]]' name='roll_no' id='roll_no' placeholder='Roll number' class='span3'/>
+	<br><label for='hostel'>Hostel*</label>
+	<select id='hostel' name='hostel'>
+	<option value='alak'>Alakananda</option>
+	<option value='jam'>Jamuna</option>
+	<option value='ganga'>Ganga</option>
+	<option value='brahms'>Brahmaputra</option>
+	<option value='sarayu'>Sarayu</option>
+	<option value='sharav'>Sharavati</option>
+	<option value='tambi'>Tamiraparani</option>
+	<option value='sindhu'>Sindhu</option>
+	<option value='krishna'>Krishna</option>
+	<option value='cauvery'>Cauvery</option>
+	<option value='narmad'>Narmada</option>
+	<option value='tapti'>Tapti</option>
+	<option value='saras'>Saraswati</option>
+	<option value='godav'>Godavari</option>
+	<option value='pampa'>Pampa</option>
+	<option value='mahanadi'>Mahanadi</option>
+	<option value='mandak'>Mandakini</option>
 	</select>
 
-	<br><label for="email">Email-ID*</label>
-	<input class="validate[required,custom[email]]" type="email" id="email"  name="email" style="width:200px" placeholder=" Enter your email address"/><br>
-	<br><label for="password">Password*</label>
-	<input class="validate[required,custom[password]]" type="password" id="password" name="password" placeholder="Password" class="span3" data-prompt-position="centerRight"/><br>
-	<br><label for="confirmpwd">Confirm Password*</label>
-	<input class="validate[equals[password]]" type="password" id="confirmpwd" name="confirmpwd" placeholder="Retype Password" class="span3"/><br>
+	<br><label for='email'>Email-ID*</label>
+	<input class='validate[required,custom[email]]' type='email' id='email_register'  name='email_register' style='width:200px' placeholder=' Enter your email address'/><br>
+	<br><label for='password'>Password*</label>
+	<input class='validate[required,custom[password]]' type='password' id='password' name='password' placeholder='Password' class='span3' data-prompt-position='centerRight'/><br>
+	<br><label for='confirmpwd'>Confirm Password*</label>
+	<input class='validate[equals[password]]' type='password' id='confirmpwd' name='confirmpwd' placeholder='Retype Password' class='span3'/><br>
 	</fieldset>
-	<br><button type="submit" value="Register"  class="btn btn-success">Submit</button>
-	<button type="reset" class="btn">Clear</button>
+	<br><button type='submit' value='Register'  class='btn btn-success'>Submit</button>
+	<button type='reset' class='btn'>Clear</button>
 	</form>
 	</div>
-	<div id="warning"></div>
+	<div id='warning'></div>
 	</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+<?php else : //logged in ?>
+<label>Welcome <?php echo $_SESSION['uname'];?>!</label>
+<?php endif; ?>
 
 	</div>
 	</div>

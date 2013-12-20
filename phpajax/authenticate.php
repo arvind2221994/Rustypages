@@ -65,6 +65,8 @@ function login($email, $password, $mysqli) {
                     //$_SESSION['login_string'] = hash('sha256', $password . $user_browser);
                     $_SESSION['pass_ok'] = 1;
 					$_SESSION['user_details'] = $user_browser . $user_ip;
+                    $_SESSION['uname'] = $username;
+					
 					// Login successful.
 					$mysqli->query("DELETE FROM login_attempts 
                                     WHERE username = '$username'");

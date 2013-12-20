@@ -5,8 +5,8 @@ require_once('db_connect.php');
 /* RECEIVE VALUE */
 $usernameValue = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
 $rollValue=filter_input(INPUT_POST, 'roll_no', FILTER_SANITIZE_STRING);
-$emailValue=filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-
+$emailValue=filter_input(INPUT_POST, 'email_register', FILTER_SANITIZE_EMAIL);
+$rollValue = strtolower($rollValue);
 
 if ($stmt = $mysqli->prepare("SELECT username
         FROM users
@@ -89,7 +89,7 @@ if($emailValue!= $email){		// validate??
 	$arrayToJs[2][1] = false;			// RETURN TRUE
 	$arrayToJs[2][2] = "This email is not available";    
 }
-ChromePhp::log($arrayToJs[1]);
+//ChromePhp::log($_POST);
 echo json_encode($arrayToJs);
 
 ?>

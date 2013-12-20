@@ -16,7 +16,7 @@
                     "alertText": "* Incorrect Roll No format"
                 },
                 "password": {
-                    "regex": /^[a-z0-9_-]{8,18}$/,
+                    "regex": /^[a-zA-Z0-9_\$!-]{8,18}$/,
                     "alertText": "* Password must contain at least 8 characters"
                 },
                 "requiredInFunction": { 

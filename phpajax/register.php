@@ -1,26 +1,26 @@
 <?php
+include('chromephp.php');
 require_once('db_connect.php');
  
 $error_msg = "";
 
-if (isset($_POST['username'], $_POST['name'], $_POST['roll_no'], $_POST['hostel'], $_POST['email'], $_POST['password'])) {
-    // Sanitize and validate the data passed in
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-//    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
-    $roll_no = filter_input(INPUT_POST, 'roll_no', FILTER_SANITIZE_STRING);
 
+if (isset($_POST['username'], $_POST['name'], $_POST['roll_no'], $_POST['hostel'], $_POST['email_register'], $_POST['password'])) {
+    // Sanitize and validate the data passed in
+	$_POST['confirmpwd']='';
+    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    $email = filter_input(INPUT_POST, 'email_register', FILTER_SANITIZE_EMAIL);
+    $roll_no = filter_input(INPUT_POST, 'roll_no', FILTER_SANITIZE_STRING);
+	$roll_no = strtolower($roll_no);	//save roll nos in lower case
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
     $password = hash("sha256", $password);
     if (strlen($password) != 64) {
         // The hashed pwd should be 64 characters long.
         // If it's not, something really odd has happened
-        $error_msg .= '<p class="error">Invalid password configuration.</p>';
-    }
-      var_dump($password);
+		exit();
+	}
           
- 
-    // Username validity and password validity have been checked client side.
+    // Username validity,email validity, roll no validity and password validity have been checked client side.
     // This should should be adequate as nobody gains any advantage from
     // breaking these rules.
     //
@@ -72,6 +72,7 @@ if (isset($_POST['username'], $_POST['name'], $_POST['roll_no'], $_POST['hostel'
             // Execute the prepared query.
             $insert_stmt->execute();
         }
-        header('Location: ./register_success.php');
+    //header('Location: ./register_success.php');
+	//ChromePhp::log($_POST);
     }
 }

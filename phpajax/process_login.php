@@ -4,8 +4,6 @@ require_once('authenticate.php');
 //require('ajaxValidateUserLogin.php'); 
 session_start(); // Our custom secure way of starting a PHP session.
 
-var_dump($_SESSION);
-
 if (isset($_POST['email_login'], $_POST['password_login'])) {
     $email = $_POST['email_login'];
     $password = hash("sha256",$_POST['password_login']); // The hashed password.
@@ -13,7 +11,7 @@ if (isset($_POST['email_login'], $_POST['password_login'])) {
 
     if (login($email, $password, $mysqli) == true) {
         // Login success 
-        //header('Location: /profile.html');
+        header('Location: ../test_toggle_forms.php');
     } else {
         // Login failed 
         //header('Location: /error.html');
