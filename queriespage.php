@@ -61,10 +61,13 @@ margin-top:10px;margin-left:20px;height:90px;width:90px;
             </button>
             <a class="navbar-brand" href="#">Project BookWorm</a>
         </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><input type="text" placeholder="Quick Search" style="margin-left:300px;margin-top:10px;width:500px;height:40px;"><button class="btn btn-danger" style="height:40px;"><span class="glyphicon glyphicon-search"></span></button> </input></li></li>
-                    </ul>        
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <form name="search" method="get" action="">
+                    <li><input name="query_string" type="text" placeholder="Quick Search" style="margin-left:300px;margin-top:10px;width:500px;height:40px;">
+                        <button class="btn btn-danger" style="height:40px;"><span class="glyphicon glyphicon-search"></span></button> </input></li></li>
+                </form>
+            </ul>        
 		<?php include '/phpajax/checklogin.php';
 		//$toggle = 1 means logged in, 0 means logged out
                 if(!$toggle) : //logged out?>
@@ -215,29 +218,29 @@ $(document).ready(function(){
 
 <!-- Sample of a search result-->
 <div id="results_panel">
-
-		<div class="result">
-			
-			<img src="http://covers.booktopia.com.au/big/9780470547557/fox-and-mcdonald-s-introduction-to-fluid-mechanics.jpg" alt="book1" id="img"class="img-thumbnail">
-			<p style="margin-top:-80px;margin-left:120px;"><font size="3"><b><font color="green">Name:</font>Introduction to Fluid Mechanics</b><br><b><font color="green">Author:</font>Robert W.Fox, Alan T.McDonald and Philip J.Pritchard</b><br><b><font color="green">Course:</font>AM2530 Foundations of Fluid Mechanics<a href="#"><span class="badge">Preview</span></a></b></font><br></p>
-			<div class="tags"><button class="btn btn-success">Available</button><br><br><button class="btn btn-danger">Unavailable</button></div>
-		</div>
-	<br>
-		<div class="result">
-			
-			<img src="http://www-fp.pearsonhighered.com/assets/hip/images/bigcovers/0131481908.jpg" alt="book1" id="img"class="img-thumbnail">
-			<p style="margin-top:-80px;margin-left:120px;"><font size="3"><b><font color="green">Name:</font>Machine Design(5th Edition)</b><br><b><font color="green">Author:</font>Robert L.Norton</b><br><b><font color="green">Course:</font>ME3350 Design of Machine Elements</b></font></p>
-			<div class="tags"><button class="btn btn-success">Available</button><br><br><button class="btn btn-danger">Unavailable</button></div>
-
-		</div>
-	<br>
-		<div class="result">
-			
-			<img src="http://www.gobookshopping.com/uploads/books/web/content/UBS/uploads/books/9781259006197.jpg" alt="book1" id="img" class="img-thumbnail">
-			<p style="margin-top:-80px;margin-left:120px;"><font size="3"><b><font color="green">Name:</font>Internal Combustion Engines</b><br><b><font color="green">Author:</font>V. Ganesan</b><br><b><font color="green">Course:</font>ME3330: IC Engines</b></font></p>
-			<div class="tags"><button class="btn btn-success">Available</button><br><br><button class="btn btn-danger">Unavailable</button></div>
-
-		</div>
+<?php 
+if(isset($_GET['query_string'])):
+include "phpajax/search.php";
+if(!empty($id))
+foreach($id as $entry): 
+    $stmt = $mysqli->prepare("SELECT b_id, b_title, b_author, b_course, b_course_title
+        FROM book_data
+        WHERE b_id = ?
+        LIMIT 1");
+$stmt->bind_param('i', $entry);  
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($b_id, $b_name, $b_author, $b_course, $b_course_title);
+$stmt->fetch();
+    ?>
+    <div class="result">
+        <img src="/Rustypages/images/flumech.jpg" alt="book1" id="img"class="img-thumbnail">
+        <p style="margin-top:-80px;margin-left:120px;"><font size="3"><b><font color="green">Name:</font><?php echo $b_name;?></b><br><b><font color="green">Author:</font><?php echo $b_author;?></b><br><b><font color="green">Course:</font><?php echo $b_course." ".$b_course_title;?><a href="#"><span class="badge">Preview</span></a></b></font><br></p>
+        <div class="tags"><button class="btn btn-success">Available</button><br><br><button class="btn btn-danger">Unavailable</button></div>
+    </div>
+    <br>
+    <?php endforeach;
+        endif; ?>
 
 
 </div>
@@ -247,71 +250,56 @@ $(document).ready(function(){
 </div>-->
 
 
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default" style="width:330px" >
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-          <b>Academic</b>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body">
-	<table class="table">
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-plane"></span> All types</a></td></tr>
-     	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-plane"></span> Aerospace Engg.</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-tint"></span> Biotechnology</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-fire"></span> Chemical Engg.</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-home"></span> Civil Engg.</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-fire"></span> Chemistry</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-hdd"></span> Computer Science & Engg.</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-off"></span> Electrical Engg.</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-info-sign"></span> Engineering Physics</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-picture"></span> Engineering Design</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-book"></span> Humanities</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-signal"></span> Mathematics</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-wrench"></span> Mechanical Engg.</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-cog"></span> Metallurgical & Material Sciences</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-briefcase"></span> Management Studies</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-flag"></span> Naval Architecture & Ocean Engg.</a></td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-leaf"></span> Physics</a></td></tr>
-	
-	</table>
-	</div>	
-    </div>
-  </div>
+<div class="panel-group" id="accordion" style="width:200px;margin-left: 0px;">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title" style="height:10px">
+										<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Academic</a>
+									</h4>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse in">
+									<div class="panel-body">
 
-  <div class="panel panel-default" style="width:330px">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-         <b>Non Academic</b>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body">
-	<table class="table">
-        <tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Fiction</a></td>  </tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Biography</a>  </tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Literature</a>   </td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Magazine/Journal</a>  </td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Art</a>  </td> </tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Fashion</a> </td> </tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Romance</a>   </td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Crime/Thriller</a> </td> </tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Comics</a>  </td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Sci-Fi</a>   </td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Sports</a>   </td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Non-fiction</a>   </td></tr>
-	<tr><td><input type="checkbox"> <a href="#"><span class="glyphicon glyphicon-folder-open"></span> Classics</a>  </td></tr>
-	</table>
-      </div>
-    </div>
-  </div>
+										<a href="#"><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-plane"></span>AE</span></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-tint"></span>BT/BS</span></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-wrench"></span>ME</span><br><br></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-flag"></span>NA/OE/OS</span></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-hdd"></span>CS</span><br><br></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-home"></span>CE</span></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-leaf"></span>Env</span></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-fire"></span>CH</span><br><br></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-off"></span>EE</span></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-briefcase"></span>MS</span></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-book"></span>HS</span><br><br></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-info-sign"></span>EP</span></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-cog"></span>MM</span> </a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-signal"></span>MA</span><br><br></a>
+										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-picture"></span>ED</span></a>
 
-</div>
+
+									</div>	
+								</div>
+							</div>
+
+							<div class="panel panel-default" style="width:200px">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Non Academic</a>
+									</h4>
+								</div>
+								<div id="collapseTwo" class="panel-collapse collapse">
+									<div class="panel-body">
+										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Fiction</span>
+										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Biography</span><br><br>
+										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Lit</span>
+										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Magazine</span><br><br>
+										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Art</span>
+										<span class="badge" style="background-color:#234723"><span class="glyphicon glyphicon-folder-open"></span> Fashion</span>
+									</div>
+								</div>
+							</div>
+
+						</div>
 
 
 
