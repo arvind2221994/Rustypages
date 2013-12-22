@@ -6,11 +6,11 @@
 
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
 <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css"/>
+<link href="css/icheck/line/blue.css" rel="stylesheet"/>
 
-<script src="js/jquery.min.js"></script>
+<script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
-<script src="jquery.js"></script>
-<script src="jquery.validation.js"></script>
+<script src="js/icheck.js"></script>
 <style>
 #results_panel{ position:absolute;
 margin-left:350px; height:100%;width:720px;-webkit-border-radius : 5px;
@@ -44,8 +44,24 @@ margin-top:10px;margin-left:20px;height:90px;width:90px;
     position:absolute;margin-top:-80px;margin-left:630px;
 }
 </style>
+<script>
+$(document).ready(function(){
+  $('input').each(function(){
+    var self = $(this),
+      label = self.next(),
+      label_text = label.text();
+
+    label.remove();
+    self.iCheck({
+      checkboxClass: 'icheckbox_line-blue',
+      radioClass: 'iradio_line-blue',
+      insert: '<div class="icheck_line-icon"></div>' + label_text
+    });
+  });
+});
+</script>
 </head>
-    <body style="background-color:#202020"> 
+    <body style="background-color:#202020" onload=mySearch(); > 
         <div class="container">
             
             <div class="container">
@@ -64,8 +80,8 @@ margin-top:10px;margin-left:20px;height:90px;width:90px;
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <form name="search" method="get" action="">
-                    <li><input name="query_string" type="text" placeholder="Quick Search" style="margin-left:300px;margin-top:10px;width:500px;height:40px;">
-                        <button class="btn btn-danger" style="height:40px;"><span class="glyphicon glyphicon-search"></span></button> </input></li></li>
+                <li><input id="search" name="query" type="text" placeholder="Quick Search" style="margin-left:100px;margin-top:10px;width:500px;height:40px;"/></li>
+                <li><button  class="btn btn-danger" style="height:40px;"><span class="glyphicon glyphicon-search"></span></button> </input></li>
                 </form>
             </ul>        
 		<?php include '/phpajax/checklogin.php';
@@ -219,29 +235,7 @@ $(document).ready(function(){
 <!-- Sample of a search result-->
 <div id="results_panel">
 <?php 
-if(isset($_GET['query_string'])):
-include "phpajax/search.php";
-if(!empty($id))
-foreach($id as $entry): 
-    $stmt = $mysqli->prepare("SELECT b_id, b_title, b_author, b_course, b_course_title
-        FROM book_data
-        WHERE b_id = ?
-        LIMIT 1");
-$stmt->bind_param('i', $entry);  
-$stmt->execute();
-$stmt->store_result();
-$stmt->bind_result($b_id, $b_name, $b_author, $b_course, $b_course_title);
-$stmt->fetch();
-    ?>
-    <div class="result">
-        <img src="/Rustypages/images/flumech.jpg" alt="book1" id="img"class="img-thumbnail">
-        <p style="margin-top:-80px;margin-left:120px;"><font size="3"><b><font color="green">Name:</font><?php echo $b_name;?></b><br><b><font color="green">Author:</font><?php echo $b_author;?></b><br><b><font color="green">Course:</font><?php echo $b_course." ".$b_course_title;?><a href="#"><span class="badge">Preview</span></a></b></font><br></p>
-        <div class="tags"><button class="btn btn-success">Available</button><br><br><button class="btn btn-danger">Unavailable</button></div>
-    </div>
-    <br>
-    <?php endforeach;
-        endif; ?>
-
+?>
 
 </div>
 
@@ -251,37 +245,35 @@ $stmt->fetch();
 
 
 <div class="panel-group" id="accordion" style="width:200px;margin-left: 0px;">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title" style="height:10px">
-										<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Academic</a>
-									</h4>
-								</div>
-								<div id="collapseOne" class="panel-collapse collapse in">
-									<div class="panel-body">
-
-										<a href="#"><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-plane"></span>AE</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-tint"></span>BT/BS</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-wrench"></span>ME</span><br><br></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-flag"></span>NA/OE/OS</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-hdd"></span>CS</span><br><br></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-home"></span>CE</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-leaf"></span>Env</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-fire"></span>CH</span><br><br></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-off"></span>EE</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-briefcase"></span>MS</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-book"></span>HS</span><br><br></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-info-sign"></span>EP</span></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-cog"></span>MM</span> </a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-signal"></span>MA</span><br><br></a>
-										<a href=""><span class="badge" style="background-color:#287AA9"><span class="glyphicon glyphicon-picture"></span>ED</span></a>
-
-
-									</div>	
-								</div>
-							</div>
-
-							<div class="panel panel-default" style="width:200px">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title" style="height:10px">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Academic</a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+             <ul id="tech" class="list">
+                    <li><input type="checkbox" id = "ae" name="subject" value="ae" checked/><label>AE</label></li>
+                    <li><input type="checkbox" id = "bt" name="subject" value="bt" checked/><label>BT</label></li>
+                    <li><input type="checkbox" id = "ed" name="subject" value="ed" checked/><label>ED</label></li>
+                    <li><input type="checkbox" id = "cs" name="subject" value="cs" checked/><label>CS</label></li>
+                    <li><input type="checkbox" id = "ma" name="subject" value="ma" checked/><label>MA</label></li>
+                    <li><input type="checkbox" id = "ep" name="subject" value="ep" checked/><label>EP</label></li>
+                    <li><input type="checkbox" id = "ms" name="subject" value="ms" checked/><label>MS</label></li>
+                    <li><input type="checkbox" id = "hs" name="subject" value="hs" checked/><label>HS</label></li>
+                    <li><input type="checkbox" id = "ee" name="subject" value="ee" checked/><label>EE</label></li>
+                    <li><input type="checkbox" id = "ch" name="subject" value="ch" checked/><label>CH</label></li>
+                    <li><input type="checkbox" id = "na" name="subject" value="na" checked/><label>NA</label></li>
+                    <li><input type="checkbox" id = "ce" name="subject" value="ce" checked/><label>CE</label></li>
+                    <li><input type="checkbox" id = "me" name="subject" value="me" checked/><label>ME</label></li>
+                    <li><input type="checkbox" id = "mm" name="subject" value="mm" checked/><label>MM</label></li>
+             </ul>   
+            </div>	
+        </div>
+    </div>
+    
+    <div class="panel panel-default" style="width:200px">
 								<div class="panel-heading">
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Non Academic</a>
@@ -301,7 +293,67 @@ $stmt->fetch();
 
 						</div>
 
+<script type="text/javascript">
+    
+function mySearch(){
+//update query with tags
+$('input').iCheck('update');
+var tags = new Array();     //$(this).val() stores the value
+$('input:checkbox[name=subject]:checked').each(function(){
+    tags.push(this.value);
+});
+var q = '<?php if(isset($_GET['query'])){echo $_GET['query'];}else {echo '';}?>';
+//console.log(q);
+//update query with search term       
+//var q = "gaskell";
+if(q.length>2)
+    $.ajax({
+		url: "phpajax/search.php",
+        type: "GET",
+        dataType: 'json',
+        data: { call: 1, query: q, tags: tags }
+    })
+        .success(function(data,status) {
+            tags = data['tags'];        //latest tags updated from the database
+    
+        //updating checkboxes on the page with tags from database
+        console.log(tags);        
+        $('input:checkbox[name=subject]').attr('checked',false);
+        $('input:checkbox[name=subject]').iCheck('update');
+        $.each(data['tags'], function(i,value){
+            $('#'+value).iCheck('check');
+        });
+        
+        //writing search results to html
+        $("#results_panel").empty(); var htmlData = '';
+        $.each(data['vals'], function(i,value){
+			$("#results_panel").append('<div class="result">');
+			htmlData += '<div class="result">';
+			htmlData += '<img src="/Rustypages/images/flumech.jpg" alt="book1" id="img"class="img-thumbnail"/>';
+			htmlData += '<p style="margin-top:-80px;margin-left:120px;"><font size="3">';
+			htmlData += '<b><font color="green">Name:</font>' + data["vals"][i].b_name + '</b><br/>';
+			htmlData += '<b><font color="green">Author:</font>'+data["vals"][i].b_author+'</b><br/>';
+			htmlData += '<b><font color="green">Course:</font>'+data["vals"][i].b_course+' '+data["vals"][i].b_course_title+'<a href="#"><span class="badge">Preview</span></a></b></font><br></p>';
+			htmlData += '<div class="tags"><button class="btn btn-success">Available</button><br/><button class="btn btn-danger">Unavailable</button></div>';
+			htmlData += '</div><br/>';
+			console.log(data["vals"][i].b_name);
+			});
+$('#results_panel').html(htmlData);			
+    });
+    }
 
+//ajax call on unchecking
+
+//ajax call on checking
+$("input:checkbox[name=subject]").on(
+    'ifClicked', function(){
+        $('#'+this.id).iCheck('toggle');
+    console.log("clicked");
+    mySearch();}
+);  
+
+
+</script>
 
 </body>
 </html>

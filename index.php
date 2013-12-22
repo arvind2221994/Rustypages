@@ -222,7 +222,7 @@ $(document).ready(function() {
             <div id="back" >
                 <form name="search" method="get" action="queriespage.php">
                     
-                    <input style="width:900px;height:30px;align:center;" type="search" placeholder="Bookname" name="query_string" class="search-query input-medium">
+                    <input style="width:900px;height:30px;align:center;" type="search" placeholder="Bookname" name="query" class="search-query input-medium">
                         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
                 </form>
             </div>
