@@ -10,7 +10,7 @@
         <link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
         <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.css"/>
 
-        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.js"></script>
         <script src="js/bootstrap.js"></script>
 
 
@@ -70,7 +70,9 @@
     <script src='js/jquery.validationEngine.js' type='text/javascript' charset='utf-8'></script>
                             
 <script>
-$(document).ready(function() {
+$(document).ready(function($) {
+
+	$("#registration_form").progression();
     // binds form submission and fields to the validation engine
     $('#registration_form').validationEngine({
         promptPosition: 'centerRight',
@@ -126,11 +128,11 @@ $(document).ready(function() {
     <table class='table'>
         <tr>
             <td><label>EmailID</label></td>
-            <td><input data-progression class='validate[required,custom[email]]' type='email' style='width:200px' id='email_login' name='email_login' data-helper=' Enter your email address' class='span3'/></td>
+            <td><input data-progression class='validate[custom[email]]' type='email' style='width:100%' id='email_login' name='email_login' data-helper=' Enter your email address' class='span3'/></td>
         </tr>
         <tr>
             <td><label>Password</label></td>
-            <td><input class='validate[required,custom[password]]' type='password' name='password_login' id='password_login' placeholder='Keep it secure!' class='span3'/></td>				
+            <td><input class='validate[custom[password]]' type='password' name='password_login' id='password_login' placeholder='Keep it secure!' class='span3'/></td>				
         </tr>
     </table>
     <button type='submit' value='login' onclick= 'return true' class='btn btn-success'>Login</button>
@@ -152,42 +154,46 @@ $(document).ready(function() {
         
         <!--REGISTER FORM-->
         <form action='phpajax/ajaxValidateUser.php' method='post' name='registration_form' id='registration_form'>
-            <fieldset>
-                <label for='username'>Username*</label>
-                <input class='validate[required,ajax[ajaxUserNameCall]' type='text' name='username' id='username' placeholder='Choose a username' class='span3' class='cname'/>		
-                <br><label for='name'>Name*</label>
-                    <input type='text' class='validate[required]' name='name' id='name' placeholder='Your name' class='span3'/>
-                    <br><label for='roll_no'>Roll number*</label>
-                        <input type='text' class='validate[required,custom[rollNo]]' name='roll_no' id='roll_no' placeholder='Roll number' class='span3'/>
-                        <br><label for='hostel'>Hostel*</label>
-                            <select id='hostel' name='hostel'>
-                                <option value='alak'>Alakananda</option>
-                                <option value='jam'>Jamuna</option>
-                                <option value='ganga'>Ganga</option>
-                                <option value='brahms'>Brahmaputra</option>
-                                <option value='sarayu'>Sarayu</option>
-                                <option value='sharav'>Sharavati</option>
-                                <option value='tambi'>Tamiraparani</option>
-                                <option value='sindhu'>Sindhu</option>
-                                <option value='krishna'>Krishna</option>
-                                <option value='cauvery'>Cauvery</option>
-                                <option value='narmad'>Narmada</option>
-                                <option value='tapti'>Tapti</option>
-                                <option value='saras'>Saraswati</option>
-                                <option value='godav'>Godavari</option>
-                                <option value='pampa'>Pampa</option>
-                                <option value='mahanadi'>Mahanadi</option>
-                                <option value='mandak'>Mandakini</option>
-                            </select>
-
-                            <br><label for='email'>Email-ID*</label>
-                                <input class='validate[required,custom[email]]' type='email' id='email_register'  name='email_register' style='width:200px' placeholder=' Enter your email address'/><br>
-                                    <br><label for='password'>Password*</label>
-                                        <input class='validate[required,custom[password]]' type='password' id='password' name='password' placeholder='Password' class='span3' data-prompt-position='centerRight'/><br>
-                                    <br><label for='confirmpwd'>Confirm Password*</label>
-                                        <input class='validate[equals[password]]' type='password' id='confirmpwd' name='confirmpwd' placeholder='Retype Password' class='span3'/><br>
-                                            </fieldset>
-            <br><button type='submit' value='Register'  class='btn btn-success'>Submit</button>
+				<table>
+					<tr style="height:25px; width:400px; padding-top:1px; padding-bottom:1px;">
+					<td style="width:40%; height: 25px; "><label style="width:100%; height:25px; line-height:25px;" for='username'>Username*</label></td>
+					<td style="width:60%; height:25px;"><input data-progression class='validate[ajax[ajaxUserNameCall]' type='text' style="height:25px; width:100%;" name='username' id='username' data-helper='Choose a username' class='span3' class='cname'/></td>
+					</tr>
+					<tr style="height:25px; width:400px; padding-top:1px; padding-bottom:1px;">
+					<td style="width:40%; height: 25px; "><label style="width:100%; height:25px; line-height:25px;" for='name'>Name*</label></td>
+					<td style="width:60%; height: 25px; "><input data-progression type='text' class='validate[required]' style="height:25px; width:100%;" name='name' id='name' data-helper='Your name' class='span3'/></td></tr>
+					<tr style="height:25px; width:400px; padding-top:1px; padding-bottom:1px;"><td style="width:40%; height: 25px; "><label style="width:100%; height:25px; line-height:25px;" for='roll_no'>Roll number*</label></td>
+					<td style="width:60%; height: 25px; "><input data-progression type='text' class='validate[custom[rollNo]]' style="height:25px; width:100%;" name='roll_no' id='roll_no' data-helper='Roll number' class='span3'/></td></tr>
+					<tr style="height:25px; width:400px; padding-top:1px; padding-bottom:1px;"><td style="width:40%; height: 25px; "><label style="width:100%; height:25px; line-height:25px;"for='hostel'>Hostel*</label></td>
+					<td style="width:60%; height: 25px; "><select data-progression id='hostel' name='hostel' style="height:25px; width:100%;" data-helper='Tell us which hostel you root for!'>
+                                  <option value='alak'>Alakananda</option>
+                                  <option value='jam'>Jamuna</option>
+                                  <option value='ganga'>Ganga</option>
+                                  <option value='brahms'>Brahmaputra</option>
+                                  <option value='sarayu'>Sarayu</option>
+                                  <option value='sharav'>Sharavati</option>
+                                  <option value='tambi'>Tamiraparani</option>
+                                  <option value='sindhu'>Sindhu</option>
+                                  <option value='krishna'>Krishna</option>
+                                  <option value='cauvery'>Cauvery</option>
+                                  <option value='narmad'>Narmada</option>
+                                  <option value='tapti'>Tapti</option>
+                                  <option value='saras'>Saraswati</option>
+                                  <option value='godav'>Godavari</option>
+                                  <option value='pampa'>Pampa</option>
+                                  <option value='mahanadi'>Mahanadi</option>
+                                  <option value='mandak'>Mandakini</option>
+                              </select></td></tr>
+  				<tr style="height:25px; width:400px; padding-top:1px; padding-bottom:1px;">
+				<td style="width:40%; height: 25px; "><label style="width:100%; height:25px; line-height:25px;" for='email'>Email-ID*</label></td>
+  				<td style="width:60%; height: 25px; "><input data-progression class='validate[custom[email]]' type='email' id='email_register'  name='email_register' style='width:100%;height:25px;' data-helper=' Enter your email address'/><br></td></tr>
+  				<tr style="height:25px; width:400px; padding-top:1px; padding-bottom:1px;"><td style="width:40%; height: 25px; "><label style="width:100%; height:25px; line-height:25px;" for='password'>Password*</label></td>
+  				<td style="width:60%; height: 25px; "><input data-progression class='validate[custom[password]]' type='password' style="width:100%;height:25px;" id='password' name='password' data-helper='Password' class='span3' data-prompt-position='centerRight'/><br></td></tr>
+  				<tr style="height:25px; width:400px; padding-top:1px; padding-bottom:1px;">
+				<td style="width:40%; height: 25px; "><label style="width:100%; height:25px; line-height:25px;" for='confirmpwd'>Confirm Password*</label></td>
+  				<td style="width:60%; height: 25px; "><input data-progression class='validate[equals[password]]' type='password' style="height:25px;width:100%;" id='confirmpwd' name='confirmpwd' data-helper='Confirm with what you just typed!' class='span3'/><br></td></tr>
+  </table>
+            <br/><button type='submit' value='Register'  class='btn btn-success'>Submit</button>
                 <button type='reset' class='btn'>Clear</button>
         </form>
     </div>

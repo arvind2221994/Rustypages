@@ -6,6 +6,7 @@
  */
 ;(function ( $, window, document, undefined ) {
 
+
     var pluginName = "progression",
         defaults = {
             tooltipWidth: '200',
@@ -39,11 +40,6 @@
         init: function() {
 
              data_prog = this.$elem.css('position','relative').find('[data-progression]');   
-
-            
-
-
-
           
 
             items =  data_prog.length;
@@ -90,20 +86,26 @@
 
                 $this1.bind('live focus change',function(){
 
-                   thisprogressionlength = $this1.parent().parent().find('[data-progression]').length;
+                   thisprogressionlength = $this1.parent().parent().parent().parent().parent().find('[data-progression]').length;	//total no. of fields
                    alldataprogression = $this1.parent().parent().find('[data-progression]');
 
-                    thisid2=$this1.parent().parent().attr('id');
+                    //It was originally this
+					//thisid2=$this1.parent().parent().attr('id');
+					/*I made it this IN ORDER TO GET THE ID OF THE FORM. YOU "CAN" HARDCODE IT TOO. 
+					JUST MADE SURE YOU UPDATE thisprogressionlength TO THE TOTAL NUMBER OF FIELDS TOO*/
+					thisid2=$this1.parent().parent().parent().parent().parent().attr('id');			//form id - so many parents because our input has a lot of parents :P
                     thistooltip = $('[data-tooltip="'+thisid2+'"]');
-                    thishelper= $this1.attr('data-helper');
+                    thishelper= $this1.attr('data-helper');											//field helper text
+										
 
+					
                     if ($this1.attr('data-helper') !== undefined) {
                             thishelper= $this1.attr('data-helper');
                     } else {
                         thishelper = '';
                     }
 
-                    index = parseInt($('#'+thisid2).find('[data-progression]').index($this1)) + 1;
+                    index = parseInt($('#'+thisid2).find('[data-progression]').index($this1)) + 1; //index of the field - 1/2/3/4...
                     percentage = GetPercentage(thisprogressionlength, index).toFixed(0);
                     thistooltip.find('p').html('<span class="tooltip_helper"><span data-index="1" >'+index+'</span>/'+thisprogressionlength+'</span> '+thishelper).parent().find('.percentagebarinner').css( "width",parseInt(percentage)+'%').next().html(parseInt(percentage)+'%');
                     thistooltip.css( "top", offset+'px' );

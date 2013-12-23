@@ -1650,6 +1650,7 @@
 				'position': positionType === 'inline' ? 'relative' : 'absolute',
 				"top": pos.callerTopPosition,
 				"left": pos.callerleftPosition,
+				"height": '25px',
 				"marginTop": pos.marginTopSize,
 				"opacity": 0
 			}).data("callerField", field);
@@ -1843,9 +1844,9 @@
 					break;
 
 				case "centerRight":
-					promptTopPosition = fieldTop+4;
+					promptTopPosition = fieldTop;
 					marginTopSize = 0;
-					promptleftPosition= fieldLeft + field.outerWidth(true)+5;
+					promptleftPosition= fieldLeft + fieldWidth + 10;
 					break;
 				case "centerLeft":
 					promptleftPosition = fieldLeft - (promptElmt.width() + 2);
@@ -1879,7 +1880,8 @@
 			return {
 				"callerTopPosition": promptTopPosition + "px",
 				"callerleftPosition": promptleftPosition + "px",
-				"marginTopSize": marginTopSize + "px"
+				"marginTopSize": marginTopSize + "px",
+				"callerHeight": fieldHeight + "px"
 			};
 		},
 		/**
